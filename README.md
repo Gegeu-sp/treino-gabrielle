@@ -1,65 +1,74 @@
-# 🏋️‍♀️ Treinos Personalizados - Web App
+# 🏋️‍♀️ Web App de Treinos Personalizados
 
-> **Personal Trainer:** Argeu Rodrigues  
-> **Aluna:** Gabrielle Mantovani
+> **Desenvolvedora:** Gabrielle Mantovani  
+> **Mentoria:** Argeu Rodrigues  
+> **Status:** Concluído ✅
 
-Este é um projeto de estudo e aplicação real de um **Web App de Treinos** (Single Page Application) desenvolvido com tecnologias web modernas e leves. O objetivo é fornecer uma interface elegante, rápida e funcional para acompanhamento de rotinas de musculação.
+Este projeto consiste no desenvolvimento de uma **Single Page Application (SPA)** focada na experiência do usuário para acompanhamento de rotinas de treinamento físico. O objetivo foi criar uma interface mobile-first, performática e livre de frameworks pesados, demonstrando domínio sobre as tecnologias fundamentais da web.
 
-## 🛠️ Tecnologias Utilizadas
+## 1. Objetivo do Projeto
 
-Este projeto foi construído seguindo o princípio **KISS (Keep It Simple, Stupid)**, evitando complexidade desnecessária de frameworks pesados para um caso de uso simples.
+O objetivo principal deste exercício foi projetar e implementar uma solução digital que substitua as planilhas de treino convencionais (PDF/Excel) por uma aplicação interativa e responsiva. A aplicação deve permitir:
+*   Visualização clara da rotina de exercícios.
+*   Marcação de progresso em tempo real (checklists).
+*   Acesso a detalhes técnicos de execução (modal dinâmico).
+*   Registro histórico de frequência (gamificação básica).
 
-*   **HTML5 Semântico**: Estrutura base da aplicação.
-*   **TailwindCSS (via CDN)**: Framework de estilização utility-first para design rápido e responsivo.
-*   **JavaScript (Vanilla ES6+)**: Lógica de interação, manipulação de DOM e gerenciamento de estado local.
-*   **LocalStorage**: Banco de dados no navegador para persistir o histórico de treinos e streaks sem precisar de backend.
-*   **Chart.js**: Biblioteca para renderização dos gráficos de progresso.
-*   **Canvas Confetti**: Efeito visual de celebração ao concluir treinos.
-*   **FontAwesome**: Ícones vetoriais.
+## 2. Passos da Execução
 
-## 📂 Estrutura do Projeto
+O desenvolvimento foi realizado seguindo um fluxo incremental:
 
-O projeto é monólito em um único arquivo (`index.html`) para facilitar o deploy e compartilhamento rápido, mas internamente é organizado como um código modular:
+1.  **Estruturação Semântica (HTML5)**:
+    *   Criação do esqueleto da aplicação com tags semânticas (`<header>`, `<main>`, `<section>`, `<nav>`).
+    *   Definição de metadados SEO para indexação correta.
 
-*   **`<head>`**: Metadados de SEO, importação de fontes (Lato & Playfair Display) e bibliotecas.
-*   **`<style>`**: Customizações CSS específicas que o Tailwind não cobre (animações, scrollbars).
-*   **`<body>`**:
-    *   **Header**: Identificação e branding.
-    *   **Main**: Área de conteúdo dinâmico (troca entre visualização de Treinos e Estatísticas).
-    *   **Modais**: Componentes de interface (Sucesso e Detalhes do Exercício) que ficam ocultos até serem acionados.
-    *   **Script**: Contém toda a lógica de negócios:
-        *   `workouts`: Objeto JSON contendo a "base de dados" dos exercícios.
-        *   `renderList()`: Função que gera o HTML dos cards de treino dinamicamente.
-        *   `openExerciseModal()`: Função de *Lazy Loading* que injeta os detalhes do exercício apenas quando solicitado.
-        *   `finishWorkout()`: Lógica de gamificação e salvamento de dados.
+2.  **Estilização Responsiva (TailwindCSS)**:
+    *   Implementação de design mobile-first.
+    *   Uso de classes utilitárias para layout (Flexbox/Grid), espaçamento e tipografia.
+    *   Personalização da paleta de cores (`rose-500` como cor primária) para identidade visual.
 
-## 🇫🇷 Vocabulário de Treino (Francês/Português)
+3.  **Lógica de Interação (JavaScript ES6+)**:
+    *   Criação de estrutura de dados JSON para armazenar os treinos e detalhes.
+    *   Desenvolvimento de funções de renderização dinâmica (`renderList`).
+    *   Implementação de persistência de dados local (`localStorage`) para salvar o histórico do usuário.
+    *   Criação de Modais Dinâmicos para exibir detalhes dos exercícios sem recarregar a página.
 
-Como parte do estudo de idiomas integrado ao treino, os exercícios foram traduzidos para o Francês:
+4.  **Refinamento e UX**:
+    *   Adição de feedback visual (animação de confetti).
+    *   Melhoria na acessibilidade e usabilidade em dispositivos móveis.
 
-| Francês | Português |
-|---------|-----------|
-| **Squat Libre** | Agachamento Livre |
-| **Soulevé de Terre** | Levantamento Terra |
-| **Développé Couché/Incliné** | Supino Reto/Inclinado |
-| **Fente** | Afundo / Passada |
-| **Gainage** | Prancha (Isometria) |
-| **Tirage Poitrine** | Puxada Alta |
-| **Relevé de Bassin** | Elevação Pélvica |
+## 3. Requisitos Técnicos
 
-## 🚀 Como Executar
+Para a execução deste projeto, foram utilizadas as seguintes tecnologias e conceitos:
 
-1.  **Clone o repositório**:
-    ```bash
-    git clone https://github.com/seu-usuario/treinos-consultoria.git
-    ```
-2.  **Abra o arquivo**:
-    Basta abrir o arquivo `index.html` em qualquer navegador moderno (Chrome, Edge, Firefox, Safari). Não é necessário instalar Node.js ou rodar servidores locais.
+*   **Linguagens**: HTML5, CSS3, JavaScript (Vanilla).
+*   **Framework CSS**: TailwindCSS (via CDN).
+*   **Armazenamento**: LocalStorage API.
+*   **Controle de Versão**: Git.
+*   **Conceitos Aplicados**:
+    *   DOM Manipulation.
+    *   Event Delegation.
+    *   JSON Data Structure.
+    *   Mobile-First Design.
 
-## 📱 Mobile First
+## 4. Critérios de Avaliação
 
-O layout foi pensado primeiramente para celulares, funcionando como um **App Nativo** quando adicionado à tela inicial (Web App Manifest ready).
+O sucesso do projeto é medido pelos seguintes critérios:
+
+*   **Funcionalidade**: O app deve permitir marcar exercícios, salvar histórico e visualizar detalhes sem erros.
+*   **Responsividade**: A interface deve se adaptar perfeitamente a telas de smartphones e desktops.
+*   **Qualidade de Código**: Código limpo, bem indentado e com variáveis descritivas (Clean Code).
+*   **Performance**: Carregamento instantâneo e transições suaves entre abas.
+*   **Independência**: O app deve funcionar sem necessidade de instalação de dependências complexas (npm/node_modules) para rodar localmente.
+
+## 5. Formato para Submissão
+
+O projeto deve ser entregue via repositório no **GitHub**, contendo:
+
+1.  **Código Fonte**: Todos os arquivos necessários (`index.html`, assets se houver).
+2.  **README.md**: Este arquivo de documentação técnica.
+3.  **Histórico de Commits**: Demonstrando a evolução do desenvolvimento.
 
 ---
 
-*Desenvolvido com ❤️ e Código Limpo.*
+*Projeto desenvolvido como parte do portfólio de Engenharia de Software e Desenvolvimento Web.*
