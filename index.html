@@ -353,55 +353,653 @@
                     reps: "6-8", 
                     note: "Amplitude máxima com controle.",
                     details: {
-                        objectives: "Fortalecimento global de membros inferiores (quadríceps, glúteos e posteriores) e core.",
+                        muscleGroup: "Quadríceps",
+                        secondaryMuscles: ["Glúteo Máximo", "Posterior de Coxa", "Eretores da Espinha", "Core"],
+                        materials: ["Barra Olímpica", "Anilhas", "Gaiola de Agachamento"],
+                        difficulty: "Avançado",
                         instructions: [
-                            "Posicione a barra sobre o trapézio (parte carnuda das costas), pés na largura dos ombros, pontas levemente para fora.",
+                            "Posicione a barra sobre o trapézio (parte carnuda das costas), pés na largura dos ombros.",
                             "Inspire fundo travando o abdômen (Bracing).",
                             "Inicie o movimento projetando o quadril para trás e joelhos para fora.",
                             "Desça até a máxima amplitude mantendo a coluna neutra.",
                             "Empurre o chão com força para subir, expirando no final do movimento."
                         ],
-                        positioning: "Em pé, pés firmes no chão, coluna alinhada.",
-                        materials: ["Barra Olímpica", "Anilhas", "Gaiola de Agachamento (Rack)"],
                         tips: [
                             "Mantenha o olhar no horizonte, não olhe para cima nem para baixo.",
                             "Não deixe os joelhos entrarem (valgo dinâmico) na subida.",
                             "Use cinturão apenas se a carga for muito elevada (>80% 1RM)."
                         ],
+                        variations: ["Agachamento Frontal (Foco em Quads)", "Agachamento Sumô (Foco em Adutores)", "Agachamento no Smith (Mais estabilidade)"],
                         evaluation: "Execução válida se o quadril passar a linha do joelho (quebra da paralela) sem curvar a lombar."
                     }
                 },
-                { name: "Elevação Pélvica", sets: "4", reps: "10-12", note: "Contraia glúteo por 2s no topo." },
-                { name: "Supino Inclinado", sets: "3", reps: "10-12", note: "Halteres. Alongue na descida." },
-                { name: "Desenvolvimento", sets: "3", reps: "10-12", note: "Tronco firme. Sem impulso." },
-                { name: "Cad. Extensora", sets: "4", reps: "15-20", note: "Pico de contração de 2s." },
-                { name: "Tríceps Testa", sets: "3", reps: "12", note: "Cotovelos fechados." },
-                { name: "Abdominal Infra", sets: "3", reps: "15", note: "Eleve o quadril do chão." }
+                { 
+                    name: "Elevação Pélvica", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Contraia glúteo por 2s no topo.",
+                    details: {
+                        muscleGroup: "Glúteo Máximo",
+                        secondaryMuscles: ["Isquiotibiais", "Eretores da Espinha"],
+                        materials: ["Banco Reto", "Barra", "Anilhas", "Colchonete/Pad"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Apoie as escápulas no banco, logo abaixo dos ombros.",
+                            "Posicione a barra sobre o quadril (use o pad para conforto).",
+                            "Pés firmes no chão, largura dos ombros.",
+                            "Eleve o quadril contraindo forte os glúteos até alinhar o tronco.",
+                            "Desça controlando o movimento sem tocar o bumbum no chão."
+                        ],
+                        tips: [
+                            "Mantenha o queixo próximo ao peito para proteger a cervical.",
+                            "Não use a lombar para subir, use o quadril.",
+                            "No topo, as canelas devem estar verticais (90º)."
+                        ],
+                        variations: ["Unilateral", "Máquina", "Com Band Elástico"],
+                        evaluation: "Pico de contração sustentado e amplitude completa."
+                    }
+                },
+                { 
+                    name: "Supino Inclinado", 
+                    sets: "3", 
+                    reps: "10-12", 
+                    note: "Halteres. Alongue na descida.",
+                    details: {
+                        muscleGroup: "Peitoral Superior",
+                        secondaryMuscles: ["Deltoide Anterior", "Tríceps"],
+                        materials: ["Banco Inclinado (30-45º)", "Halteres"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Ajuste o banco em 30 a 45 graus.",
+                            "Deite-se e estabilize os pés no chão.",
+                            "Empurre os halteres para cima, convergindo levemente sem tocar.",
+                            "Desça controladamente até os halteres chegarem na linha do peito.",
+                            "Cotovelos devem apontar levemente para dentro (não 90º)."
+                        ],
+                        tips: [
+                            "Mantenha as escápulas retraídas (fechadas) durante todo o movimento.",
+                            "Não deixe os halteres baterem no topo.",
+                            "Controle a descida (fase excêntrica) por 2-3 segundos."
+                        ],
+                        variations: ["Com Barra", "Na Máquina Articulada", "Com Cabos"],
+                        evaluation: "Movimento fluido sem tremores excessivos."
+                    }
+                },
+                { 
+                    name: "Desenvolvimento", 
+                    sets: "3", 
+                    reps: "10-12", 
+                    note: "Tronco firme. Sem impulso.",
+                    details: {
+                        muscleGroup: "Deltoides (Ombros)",
+                        secondaryMuscles: ["Tríceps", "Trapézio Superior", "Serrátil"],
+                        materials: ["Halteres", "Banco (Opcional)"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Sente-se com as costas apoiadas ou fique em pé com core travado.",
+                            "Inicie com os halteres na altura das orelhas, cotovelos abaixo dos punhos.",
+                            "Empurre para cima até estender os braços.",
+                            "Desça de forma controlada até a posição inicial."
+                        ],
+                        tips: [
+                            "Não arqueie as costas para ajudar a subir o peso.",
+                            "Mantenha os cotovelos levemente à frente do tronco.",
+                            "Respire: solte o ar ao subir."
+                        ],
+                        variations: ["Desenvolvimento Arnold", "Com Barra (Militar)", "Na Máquina"],
+                        evaluation: "Coluna estável e amplitude completa."
+                    }
+                },
+                { 
+                    name: "Cad. Extensora", 
+                    sets: "4", 
+                    reps: "15-20", 
+                    note: "Pico de contração de 2s.",
+                    details: {
+                        muscleGroup: "Quadríceps",
+                        secondaryMuscles: [],
+                        materials: ["Cadeira Extensora"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Ajuste o encosto para que seu joelho alinhe com o eixo da máquina.",
+                            "Ajuste o rolo para ficar logo acima do tornozelo.",
+                            "Estenda os joelhos completamente até travar as pernas.",
+                            "Segure por 2 segundos no topo (contração de pico).",
+                            "Desça devagar."
+                        ],
+                        tips: [
+                            "Não tire o quadril do banco.",
+                            "Segure nos apoios laterais para estabilidade.",
+                            "Foco total na contração do músculo da coxa."
+                        ],
+                        variations: ["Unilateral", "Isometria no topo"],
+                        evaluation: "Controle total sem 'chutar' o peso."
+                    }
+                },
+                { 
+                    name: "Tríceps Testa", 
+                    sets: "3", 
+                    reps: "12", 
+                    note: "Cotovelos fechados.",
+                    details: {
+                        muscleGroup: "Tríceps Braquial",
+                        secondaryMuscles: ["Ancôneo"],
+                        materials: ["Barra W ou Halteres", "Banco Reto"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Deite-se no banco segurando a barra com braços estendidos.",
+                            "Flexione os cotovelos descendo a barra em direção à testa/topo da cabeça.",
+                            "Mantenha os cotovelos apontados para o teto, não deixe abrir.",
+                            "Estenda os braços de volta à posição inicial."
+                        ],
+                        tips: [
+                            "O braço (úmero) deve ficar fixo, só o antebraço mexe.",
+                            "Cuidado para não bater a barra na testa.",
+                            "Mantenha os punhos firmes."
+                        ],
+                        variations: ["Com Halteres (Pegada Neutra)", "Na Polia (Corda)", "Banco Inclinado"],
+                        evaluation: "Estabilidade dos cotovelos."
+                    }
+                },
+                { 
+                    name: "Abdominal Infra", 
+                    sets: "3", 
+                    reps: "15", 
+                    note: "Eleve o quadril do chão.",
+                    details: {
+                        muscleGroup: "Reto Abdominal (Inferior)",
+                        secondaryMuscles: ["Flexores de Quadril", "Oblíquos"],
+                        materials: ["Colchonete"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Deite-se de costas, mãos ao lado do corpo ou sob o glúteo.",
+                            "Mantenha as pernas unidas e levemente flexionadas.",
+                            "Eleve as pernas e tire o quadril do chão na parte final.",
+                            "Desça controlando a volta, sem encostar os pés no chão se possível."
+                        ],
+                        tips: [
+                            "Foque em enrolar a coluna, não apenas levantar as pernas.",
+                            "Expira ao subir, inspira ao descer.",
+                            "Se sentir a lombar, apoie as mãos embaixo do glúteo."
+                        ],
+                        variations: ["Na Barra Fixa", "No Banco Inclinado", "Tesoura"],
+                        evaluation: "Lombar sempre protegida."
+                    }
+                }
             ],
             treino2: [
-                { name: "Levantamento Terra", sets: "4", reps: "5-8", note: "Barra colada na canela." },
-                { name: "Leg Press 45º", sets: "4", reps: "10-15", note: "Pés baixos. Não tire o calcanhar." },
-                { name: "Puxada Triângulo", sets: "4", reps: "10-12", note: "Traga no peito superior." },
-                { name: "Remada Curvada", sets: "4", reps: "10-12", note: "Pegada pronada. Tronco estável." },
-                { name: "Mesa Flexora", sets: "4", reps: "12-15", note: "Quadril fixo no banco." },
-                { name: "Panturrilha", sets: "3", reps: "15-20", note: "Amplitude máxima." },
-                { name: "Rosca Direta", sets: "3", reps: "12", note: "Sem balanço." }
+                { 
+                    name: "Levantamento Terra", 
+                    sets: "4", 
+                    reps: "5-8", 
+                    note: "Barra colada na canela.",
+                    details: {
+                        muscleGroup: "Cadeia Posterior (Costas/Glúteo/Posterior)",
+                        secondaryMuscles: ["Antebraço", "Core", "Trapézio", "Quadríceps"],
+                        materials: ["Barra Olímpica", "Anilhas"],
+                        difficulty: "Avançado",
+                        instructions: [
+                            "Pés na largura do quadril, barra sobre o meio dos pés.",
+                            "Segure a barra (pegada mista ou pronada) logo fora das pernas.",
+                            "Abaixe o quadril, estufe o peito e trave a coluna.",
+                            "Empurre o chão e suba a barra mantendo-a colada nas pernas.",
+                            "Finalize em pé com glúteos contraídos, sem hiperestender as costas."
+                        ],
+                        tips: [
+                            "A coluna nunca deve arredondar.",
+                            "Imagine que está empurrando o chão para longe, não puxando a barra.",
+                            "Mantenha o pescoço alinhado com a coluna."
+                        ],
+                        variations: ["Sumô (Pés afastados)", "Com Halteres", "Romeno"],
+                        evaluation: "Coluna neutra durante todo o movimento."
+                    }
+                },
+                { 
+                    name: "Leg Press 45º", 
+                    sets: "4", 
+                    reps: "10-15", 
+                    note: "Pés baixos. Não tire o calcanhar.",
+                    details: {
+                        muscleGroup: "Quadríceps",
+                        secondaryMuscles: ["Glúteos", "Isquiotibiais"],
+                        materials: ["Máquina Leg Press 45º"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Sente-se e apoie totalmente as costas e cabeça.",
+                            "Posicione os pés na plataforma (largura dos ombros).",
+                            "Destrave o peso e desça os joelhos em direção ao peito.",
+                            "Empurre a plataforma até quase estender os joelhos (não trave a articulação)."
+                        ],
+                        tips: [
+                            "Não deixe o quadril levantar do banco (retroversão pélvica).",
+                            "Não use as mãos para empurrar os joelhos.",
+                            "Mantenha os calcanhares sempre apoiados."
+                        ],
+                        variations: ["Pés altos (Foco Glúteo)", "Pés juntos (Foco vasto lateral)", "Unilateral"],
+                        evaluation: "Amplitude máxima sem perder a postura."
+                    }
+                },
+                { 
+                    name: "Puxada Triângulo", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Traga no peito superior.",
+                    details: {
+                        muscleGroup: "Latíssimo do Dorso (Dorsal)",
+                        secondaryMuscles: ["Bíceps", "Redondos", "Trapézio Inferior"],
+                        materials: ["Polia Alta", "Puxador Triângulo"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Sente-se e prenda as pernas no apoio.",
+                            "Segure o triângulo e incline levemente o tronco para trás.",
+                            "Puxe o triângulo em direção ao topo do peito.",
+                            "Estenda os braços completamente na volta, alongando a dorsal."
+                        ],
+                        tips: [
+                            "Puxe com os cotovelos, não com as mãos.",
+                            "Mantenha o peito estufado na contração.",
+                            "Não balance o corpo para dar impulso."
+                        ],
+                        variations: ["Barra Aberta", "Pegada Supinada", "Unilateral"],
+                        evaluation: "Ombros longe das orelhas (depressão escapular)."
+                    }
+                },
+                { 
+                    name: "Remada Curvada", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Pegada pronada. Tronco estável.",
+                    details: {
+                        muscleGroup: "Dorsal (Espessura)",
+                        secondaryMuscles: ["Trapézio", "Romboites", "Bíceps", "Lombar"],
+                        materials: ["Barra", "Anilhas"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Em pé, segure a barra e incline o tronco à frente (aprox 45º).",
+                            "Mantenha a coluna reta e joelhos levemente flexionados.",
+                            "Puxe a barra em direção ao umbigo.",
+                            "Controle a descida até estender os braços."
+                        ],
+                        tips: [
+                            "Não deixe o tronco subir e descer (gangorra).",
+                            "Feche as escápulas no final do movimento.",
+                            "Olhe para o chão, diagonal à frente."
+                        ],
+                        variations: ["Cavalinho", "Supinada", "Pendlay Row"],
+                        evaluation: "Estabilidade do tronco."
+                    }
+                },
+                { 
+                    name: "Mesa Flexora", 
+                    sets: "4", 
+                    reps: "12-15", 
+                    note: "Quadril fixo no banco.",
+                    details: {
+                        muscleGroup: "Isquiotibiais (Posterior de Coxa)",
+                        secondaryMuscles: ["Gastrocnêmio"],
+                        materials: ["Mesa Flexora"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Deite-se de bruços, joelhos alinhados com o eixo.",
+                            "Apoio do pé sobre o calcanhar.",
+                            "Flexione os joelhos trazendo o apoio em direção ao glúteo.",
+                            "Retorne devagar sem deixar o peso bater."
+                        ],
+                        tips: [
+                            "Não levante o quadril do banco ao subir o peso.",
+                            "Segure nos apoios laterais para se fixar.",
+                            "Mantenha os pés em dorsiflexão (pontas para a canela) para focar no posterior."
+                        ],
+                        variations: ["Cadeira Flexora", "Flexora em Pé", "Unilateral"],
+                        evaluation: "Quadril colado no banco."
+                    }
+                },
+                { 
+                    name: "Panturrilha", 
+                    sets: "3", 
+                    reps: "15-20", 
+                    note: "Amplitude máxima.",
+                    details: {
+                        muscleGroup: "Tríceps Sural (Panturrilha)",
+                        secondaryMuscles: [],
+                        materials: ["Máquina de Panturrilha" , "Leg Press" , "Step"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Apoie as pontas dos pés na plataforma.",
+                            "Desça o calcanhar o máximo possível (alongamento).",
+                            "Suba o máximo possível (contração).",
+                            "Realize o movimento de forma cadenciada."
+                        ],
+                        tips: [
+                            "Não faça movimentos curtos ou rápidos demais.",
+                            "Segure 1s no topo e 1s embaixo.",
+                            "Mantenha os joelhos estendidos (em pé) ou flexionados (sentado)."
+                        ],
+                        variations: ["Sentado (Sóleo)", "Em pé (Gastrocnêmio)", "No Leg Press"],
+                        evaluation: "Amplitude total."
+                    }
+                },
+                { 
+                    name: "Rosca Direta", 
+                    sets: "3", 
+                    reps: "12", 
+                    note: "Sem balanço.",
+                    details: {
+                        muscleGroup: "Bíceps Braquial",
+                        secondaryMuscles: ["Antebraço"],
+                        materials: ["Barra Reta ou W", "Halteres"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Em pé, segure a barra com palmas para frente.",
+                            "Cotovelos ao lado do corpo.",
+                            "Flexione os cotovelos trazendo a barra até a altura do ombro.",
+                            "Desça devagar."
+                        ],
+                        tips: [
+                            "Não jogue o tronco para trás.",
+                            "Não deixe os cotovelos irem para frente ou para trás.",
+                            "Mantenha o punho firme."
+                        ],
+                        variations: ["Com Halteres", "Polia Baixa", "Banco Scott"],
+                        evaluation: "Isolamento do bíceps."
+                    }
+                }
             ],
             treino3: [
-                { name: "Agachamento Búlgaro", sets: "4", reps: "10-12", note: "Tronco inclinado à frente." },
-                { name: "Stiff Halteres", sets: "4", reps: "10-12", note: "Alongamento máximo." },
-                { name: "Elevação Lateral", sets: "3", reps: "12+15", note: "Drop-set na última." },
-                { name: "Pulldown Corda", sets: "3", reps: "12-15", note: "Braços estendidos." },
-                { name: "Elevação Pélvica", sets: "4", reps: "15", note: "Foco metabólico (rápido)." },
-                { name: "Tríceps Corda", sets: "3", reps: "12", note: "Abra a corda no final." }
+                { 
+                    name: "Agachamento Búlgaro", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Tronco inclinado à frente.",
+                    details: {
+                        muscleGroup: "Quadríceps e Glúteos",
+                        secondaryMuscles: ["Adutores", "Core"],
+                        materials: ["Banco", "Halteres"],
+                        difficulty: "Avançado",
+                        instructions: [
+                            "Apoie o peito do pé de trás em um banco.",
+                            "Dê um passo à frente com a outra perna.",
+                            "Flexione o joelho da frente até a coxa ficar paralela ao chão.",
+                            "Empurre o chão com o pé da frente para subir."
+                        ],
+                        tips: [
+                            "Tronco inclinado à frente foca mais glúteo.",
+                            "Tronco reto foca mais quadríceps.",
+                            "A força está toda na perna da frente."
+                        ],
+                        variations: ["No Smith", "Sem peso", "Deficit (Step na frente)"],
+                        evaluation: "Equilíbrio e profundidade."
+                    }
+                },
+                { 
+                    name: "Stiff Halteres", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Alongamento máximo.",
+                    details: {
+                        muscleGroup: "Isquiotibiais",
+                        secondaryMuscles: ["Glúteos", "Lombar"],
+                        materials: ["Halteres"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Pés na largura do quadril, segure os halteres à frente.",
+                            "Mantenha joelhos levemente flexionados (sem dobrar mais durante o movimento).",
+                            "Empurre o quadril para trás enquanto desce o tronco.",
+                            "Desça até sentir alongar bem o posterior.",
+                            "Retorne contraindo glúteo e posterior."
+                        ],
+                        tips: [
+                            "A coluna deve permanecer neutra.",
+                            "Os halteres descem próximos às pernas.",
+                            "O movimento é de quadril, não de coluna."
+                        ],
+                        variations: ["Com Barra", "Unilateral", "Good Morning"],
+                        evaluation: "Coluna reta e posterior alongado."
+                    }
+                },
+                { 
+                    name: "Elevação Lateral", 
+                    sets: "3", 
+                    reps: "12+15", 
+                    note: "Drop-set na última.",
+                    details: {
+                        muscleGroup: "Deltoide Medial (Lateral do Ombro)",
+                        secondaryMuscles: ["Trapézio Superior"],
+                        materials: ["Halteres"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Em pé, halteres ao lado do corpo.",
+                            "Eleve os braços lateralmente até a altura dos ombros.",
+                            "Cotovelos levemente flexionados.",
+                            "Desça controlando o peso."
+                        ],
+                        tips: [
+                            "Não suba acima da linha do ombro.",
+                            "Imagine que está despejando uma jarra de água (cotovelo levemente acima do punho).",
+                            "Evite balançar o tronco."
+                        ],
+                        variations: ["Na Polia", "Sentado", "Máquina"],
+                        evaluation: "Isolamento do ombro."
+                    }
+                },
+                { 
+                    name: "Pulldown Corda", 
+                    sets: "3", 
+                    reps: "12-15", 
+                    note: "Braços estendidos.",
+                    details: {
+                        muscleGroup: "Dorsal",
+                        secondaryMuscles: ["Tríceps (Porção longa)", "Serrátil"],
+                        materials: ["Polia Alta", "Corda"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Em pé de frente para a polia, segure a corda.",
+                            "Incline o tronco levemente à frente.",
+                            "Com braços estendidos, puxe a corda em direção à coxa.",
+                            "Abra a corda no final do movimento contraindo a dorsal."
+                        ],
+                        tips: [
+                            "Mantenha os cotovelos fixos (estendidos ou levemente flexionados).",
+                            "Foco na axila fechando.",
+                            "Controle a subida."
+                        ],
+                        variations: ["Com Barra Reta", "Unilateral"],
+                        evaluation: "Sem flexão de cotovelo."
+                    }
+                },
+                { 
+                    name: "Elevação Pélvica", 
+                    sets: "4", 
+                    reps: "15", 
+                    note: "Foco metabólico (rápido).",
+                    details: {
+                        muscleGroup: "Glúteo Máximo",
+                        secondaryMuscles: ["Isquios"],
+                        materials: ["Banco", "Barra/Halter"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Mesma execução da elevação pélvica tradicional.",
+                            "Foco aqui é manter um ritmo mais constante.",
+                            "Menos carga, mais repetições e menos descanso."
+                        ],
+                        tips: [
+                            "Mantenha a tensão constante no glúteo.",
+                            "Não descanse embaixo."
+                        ],
+                        variations: ["Unilateral", "Frog Pump"],
+                        evaluation: "Queimação muscular (Pump)."
+                    }
+                },
+                { 
+                    name: "Tríceps Corda", 
+                    sets: "3", 
+                    reps: "12", 
+                    note: "Abra a corda no final.",
+                    details: {
+                        muscleGroup: "Tríceps Braquial",
+                        secondaryMuscles: [],
+                        materials: ["Polia Alta", "Corda"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Segure a corda com pegada neutra.",
+                            "Cotovelos colados nas costelas.",
+                            "Estenda os cotovelos puxando a corda para baixo.",
+                            "Abra as mãos no final do movimento para contração máxima."
+                        ],
+                        tips: [
+                            "Não deixe o cotovelo subir na volta.",
+                            "Mantenha o tronco estável.",
+                            "Amplitude total."
+                        ],
+                        variations: ["Barra Reta", "Inverso", "Unilateral"],
+                        evaluation: "Cotovelos fixos."
+                    }
+                }
             ],
             treino4: [
-                { name: "Agachamento Livre", sets: "4", reps: "10-12", note: "Carga moderada, técnica perfeita." },
-                { name: "Abdução Quadril", sets: "4", reps: "20", note: "Segure 2s na contração." },
-                { name: "Cad. Extensora", sets: "3", reps: "15+", note: "Falha total." },
-                { name: "Cad. Flexora", sets: "3", reps: "15+", note: "Movimento contínuo." },
-                { name: "Rosca Martelo", sets: "3", reps: "12", note: "Pegada neutra." },
-                { name: "Prancha", sets: "3", reps: "45s", note: "Abdômen travado." }
+                { 
+                    name: "Agachamento Livre", 
+                    sets: "4", 
+                    reps: "10-12", 
+                    note: "Carga moderada, técnica perfeita.",
+                    details: {
+                        muscleGroup: "Quadríceps",
+                        secondaryMuscles: ["Glúteos", "Core"],
+                        materials: ["Barra", "Anilhas"],
+                        difficulty: "Intermediário",
+                        instructions: [
+                            "Execução padrão do agachamento.",
+                            "Foco em controle e repetições mais altas.",
+                            "Cadência 2020 (2s descendo, 0s, 2s subindo)."
+                        ],
+                        tips: [
+                            "Priorize a técnica sobre a carga.",
+                            "Mantenha a tensão contínua."
+                        ],
+                        variations: ["Frontal", "Goblet"],
+                        evaluation: "Fluidez do movimento."
+                    }
+                },
+                { 
+                    name: "Abdução Quadril", 
+                    sets: "4", 
+                    reps: "20", 
+                    note: "Segure 2s na contração.",
+                    details: {
+                        muscleGroup: "Glúteo Médio/Mínimo",
+                        secondaryMuscles: ["Tensor da Fáscia Lata"],
+                        materials: ["Cadeira Abdutora"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Sente-se e apoie as costas.",
+                            "Ajuste os apoios na parte externa dos joelhos.",
+                            "Abra as pernas empurrando contra a resistência.",
+                            "Segure 2 segundos aberta e volte devagar."
+                        ],
+                        tips: [
+                            "Não incline o tronco para frente para roubar.",
+                            "Mantenha o glúteo no banco."
+                        ],
+                        variations: ["Com elástico", "Deitado lateral", "Polia"],
+                        evaluation: "Pico de contração."
+                    }
+                },
+                { 
+                    name: "Cad. Extensora", 
+                    sets: "3", 
+                    reps: "15+", 
+                    note: "Falha total.",
+                    details: {
+                        muscleGroup: "Quadríceps",
+                        secondaryMuscles: [],
+                        materials: ["Cadeira Extensora"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Execução padrão da extensora.",
+                            "Realize repetições até não conseguir mais subir o peso (falha concêntrica).",
+                            "Se necessário, ajude levemente na subida nas últimas e segure a descida."
+                        ],
+                        tips: [
+                            "Suportar a queimação é mental.",
+                            "Segure nos apoios."
+                        ],
+                        variations: ["Drop-set", "Rest-pause"],
+                        evaluation: "Chegar à falha muscular."
+                    }
+                },
+                { 
+                    name: "Cad. Flexora", 
+                    sets: "3", 
+                    reps: "15+", 
+                    note: "Movimento contínuo.",
+                    details: {
+                        muscleGroup: "Isquiotibiais",
+                        secondaryMuscles: [],
+                        materials: ["Cadeira Flexora"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Sente-se e ajuste o rolo sobre o tornozelo.",
+                            "Trave a coxa com o apoio superior.",
+                            "Flexione o joelho puxando para baixo.",
+                            "Volte controlando."
+                        ],
+                        tips: [
+                            "Não faça pausas, movimento contínuo (bombeamento).",
+                            "Mantenha as costas apoiadas."
+                        ],
+                        variations: ["Mesa Flexora", "Unilateral"],
+                        evaluation: "Pump muscular."
+                    }
+                },
+                { 
+                    name: "Rosca Martelo", 
+                    sets: "3", 
+                    reps: "12", 
+                    note: "Pegada neutra.",
+                    details: {
+                        muscleGroup: "Braquial e Braquiorradial",
+                        secondaryMuscles: ["Bíceps"],
+                        materials: ["Halteres"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Em pé, segure os halteres com as palmas voltadas para o corpo (neutra).",
+                            "Flexione os cotovelos mantendo a pegada neutra.",
+                            "Suba até o máximo de contração.",
+                            "Desça devagar."
+                        ],
+                        tips: [
+                            "Foco na lateral do braço e antebraço.",
+                            "Cotovelos fixos."
+                        ],
+                        variations: ["Corda na Polia", "Barra H"],
+                        evaluation: "Sem rotação de punho."
+                    }
+                },
+                { 
+                    name: "Prancha", 
+                    sets: "3", 
+                    reps: "45s", 
+                    note: "Abdômen travado.",
+                    details: {
+                        muscleGroup: "Core (Transverso Abdominal)",
+                        secondaryMuscles: ["Ombros", "Quadríceps"],
+                        materials: ["Colchonete"],
+                        difficulty: "Iniciante",
+                        instructions: [
+                            "Apoie os antebraços no chão, cotovelos alinhados com ombros.",
+                            "Estenda as pernas e apoie as pontas dos pés.",
+                            "Eleve o corpo formando uma linha reta da cabeça aos pés.",
+                            "Contraia forte abdômen e glúteos."
+                        ],
+                        tips: [
+                            "Não deixe o quadril cair (sobrecarrega lombar).",
+                            "Não levante muito o quadril (perde tensão).",
+                            "Respire curto e contínuo."
+                        ],
+                        variations: ["Lateral", "Dinâmica", "Com peso"],
+                        evaluation: "Estabilidade total."
+                    }
+                }
             ]
         };
 
@@ -612,9 +1210,8 @@
 
         function openExerciseModal(treinoId, index) {
             const exercise = workouts[treinoId][index];
-            if(!exercise.details) return;
+            const d = exercise.details || {}; 
 
-            const d = exercise.details;
             const modal = document.getElementById('exercise-modal');
             const content = document.getElementById('exercise-modal-content');
             const body = document.getElementById('modal-body');
@@ -622,29 +1219,59 @@
             // Set Title
             document.getElementById('modal-title').innerText = exercise.name;
             
+            // Helper for difficulty colors
+            const difficultyColor = {
+                'Iniciante': 'bg-emerald-100 text-emerald-700',
+                'Intermediário': 'bg-amber-100 text-amber-700',
+                'Avançado': 'bg-rose-100 text-rose-700'
+            }[d.difficulty] || 'bg-slate-100 text-slate-700';
+
             // Build Content
             let html = `
                 <div class="space-y-6">
-                    <!-- Objectives -->
+                    <!-- Header Tags -->
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="text-[10px] font-bold ${difficultyColor} px-2 py-1 rounded-full uppercase tracking-wide">${d.difficulty || 'Geral'}</span>
+                        <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded-full uppercase tracking-wide">${d.muscleGroup || 'Musculação'}</span>
+                    </div>
+
+                    <!-- Video/Image Placeholder -->
+                    <div class="aspect-video bg-slate-100 rounded-xl flex items-center justify-center border border-slate-200 relative overflow-hidden group">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle text-4xl text-rose-300 mb-2"></i>
+                            <p class="text-xs text-slate-400">Demonstração visual</p>
+                        </div>
+                    </div>
+
+                    <!-- Series & Reps Highlight -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-3 bg-rose-50 rounded-xl border border-rose-100">
+                            <span class="block text-xl font-bold text-rose-600">${exercise.sets}</span>
+                            <span class="text-[10px] uppercase text-slate-400 font-bold">Séries</span>
+                        </div>
+                        <div class="text-center p-3 bg-rose-50 rounded-xl border border-rose-100">
+                            <span class="block text-xl font-bold text-rose-600">${exercise.reps}</span>
+                            <span class="text-[10px] uppercase text-slate-400 font-bold">Repetições</span>
+                        </div>
+                    </div>
+
+                    <!-- Muscles -->
                     <div>
-                        <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-2">
-                            <i class="fas fa-bullseye text-rose-500"></i> Objetivos
+                        <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-2 text-sm">
+                            <i class="fas fa-dumbbell text-rose-500"></i> Músculos Envolvidos
                         </h4>
-                        <p class="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            ${d.objectives}
-                        </p>
+                        <div class="text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <p><strong class="text-slate-800">Principal:</strong> ${d.muscleGroup || '-'}</p>
+                            ${d.secondaryMuscles ? `<p class="mt-1"><strong class="text-slate-800">Secundários:</strong> ${d.secondaryMuscles.join(', ')}</p>` : ''}
+                        </div>
                     </div>
 
                     <!-- Positioning & Materials -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
-                            <h4 class="font-bold text-rose-600 text-sm mb-1">Posicionamento</h4>
-                            <p class="text-xs text-slate-600">${d.positioning}</p>
-                        </div>
+                    <div class="grid grid-cols-1 gap-4">
                         <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                            <h4 class="font-bold text-slate-600 text-sm mb-1">Materiais</h4>
+                            <h4 class="font-bold text-slate-600 text-sm mb-2">Materiais Necessários</h4>
                             <div class="flex flex-wrap gap-2">
-                                ${d.materials.map(m => `<span class="text-[10px] font-bold bg-white px-2 py-1 rounded border border-slate-200 text-slate-500">${m}</span>`).join('')}
+                                ${d.materials ? d.materials.map(m => `<span class="text-[10px] font-bold bg-white px-2 py-1 rounded border border-slate-200 text-slate-500">${m}</span>`).join('') : '-'}
                             </div>
                         </div>
                     </div>
@@ -655,12 +1282,12 @@
                             <i class="fas fa-list-ol text-rose-500"></i> Passo a Passo
                         </h4>
                         <div class="space-y-3">
-                            ${d.instructions.map((step, i) => `
+                            ${d.instructions ? d.instructions.map((step, i) => `
                                 <div class="flex gap-3">
                                     <span class="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500 text-white text-xs font-bold flex items-center justify-center">${i+1}</span>
                                     <p class="text-sm text-slate-600 leading-snug pt-0.5">${step}</p>
                                 </div>
-                            `).join('')}
+                            `).join('') : '<p class="text-sm text-slate-400">Instruções não disponíveis.</p>'}
                         </div>
                     </div>
 
@@ -670,17 +1297,29 @@
                             <i class="fas fa-lightbulb"></i> Dicas de Segurança
                         </h4>
                         <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 ml-1">
-                            ${d.tips.map(tip => `<li>${tip}</li>`).join('')}
+                            ${d.tips ? d.tips.map(tip => `<li>${tip}</li>`).join('') : ''}
                         </ul>
                     </div>
 
+                    <!-- Variations -->
+                    ${d.variations && d.variations.length > 0 ? `
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <h4 class="font-bold text-blue-600 mb-2 flex items-center gap-2 text-sm">
+                            <i class="fas fa-random"></i> Variações
+                        </h4>
+                        <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 ml-1">
+                            ${d.variations.map(v => `<li>${v}</li>`).join('')}
+                        </ul>
+                    </div>` : ''}
+
                     <!-- Evaluation -->
+                    ${d.evaluation ? `
                     <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
                         <h4 class="font-bold text-emerald-600 mb-1 flex items-center gap-2 text-sm">
                             <i class="fas fa-check-circle"></i> Critério de Sucesso
                         </h4>
                         <p class="text-xs text-slate-600 italic">"${d.evaluation}"</p>
-                    </div>
+                    </div>` : ''}
                 </div>
             `;
             
