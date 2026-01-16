@@ -3,436 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#111827">
-    <meta name="description" content="Planejamento de Treino Personalizado - Gabrielle Mantovani">
-    <title>Treino Fullbody - Gabrielle Mantovani</title>
+    <meta name="theme-color" content="#fdf2f8">
+    <meta name="description" content="Gabrielle Fit - Seu Planejamento de Treino Pessoal">
+    <title>Gabrielle Fit</title>
     
-    <!-- Preconnect for performance -->
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
+    <!-- Fonts: Playfair Display (Titles) & Lato (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            -webkit-tap-highlight-color: transparent;
+            background-color: #fff1f2; /* Rose 50 */
+        }
         
-        .tab-active { 
-            background: linear-gradient(135deg, #10B981, #059669); 
-            color: white; 
-            border-color: #047857;
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
         }
-        .tab-inactive { 
-            background-color: #1F2937; 
-            color: #9CA3AF; 
-            border-color: #374151;
+
+        .gradient-text {
+            background: linear-gradient(to right, #e11d48, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .tab-inactive:hover {
-            background-color: #374151;
-            color: white;
-            border-color: #4B5563;
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(251, 113, 133, 0.15);
         }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(254, 205, 211, 0.5);
+        }
+
+        /* Smooth tab transitions */
+        .tab-content {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .check-circle {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .cardio-box {
-            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+
+        /* Hide scrollbar for clean horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+<body class="bg-rose-50 text-slate-700 min-h-screen pb-24">
 
-    <div class="max-w-5xl mx-auto">
-        
-        <!-- Header -->
-        <header class="mb-8 border-b border-gray-700 pb-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-1">
-                        Planejamento de Treino
-                    </h1>
-                    <h2 class="text-xl text-emerald-400 font-semibold">Aluna: Gabrielle Mantovani</h2>
-                    <p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">
-                        Objetivo: Hipertrofia & Força | Nível: Intermediário
-                    </p>
-                </div>
-                
-                <div class="text-left md:text-right bg-gray-800 p-4 rounded-lg border border-gray-700">
-                    <p class="text-xs text-gray-500 uppercase font-bold">Personal Trainer</p>
-                    <p class="text-white font-bold text-lg">Argeu Rodrigues</p>
-                    <p class="text-emerald-500 text-sm font-mono">CREF: 158814-G/SP</p>
-                </div>
-            </div>
-        </header>
-
-        <!-- Navigation Tabs -->
-        <nav class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" aria-label="Seleção de Treinos">
-            <button onclick="switchTab('treino1')" id="btn-treino1" class="tab-active py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
-                <span>TREINO A</span>
-                <span class="text-xs opacity-75 font-normal mt-1">Quadríceps</span>
-            </button>
-            <button onclick="switchTab('treino2')" id="btn-treino2" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
-                <span>TREINO B</span>
-                <span class="text-xs opacity-75 font-normal mt-1">Posterior</span>
-            </button>
-            <button onclick="switchTab('treino3')" id="btn-treino3" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
-                <span>TREINO C</span>
-                <span class="text-xs opacity-75 font-normal mt-1">Glúteo/Ombro</span>
-            </button>
-            <button onclick="switchTab('treino4')" id="btn-treino4" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
-                <span>TREINO D</span>
-                <span class="text-xs opacity-75 font-normal mt-1">Metabólico</span>
-            </button>
-        </nav>
-
-        <!-- Content Area -->
-        <main class="bg-gray-800 md:rounded-2xl shadow-2xl border-t md:border border-gray-700 overflow-hidden min-h-[500px] -mx-4 md:mx-0">
-            
-            <!-- TREINO 1 -->
-            <div id="treino1" class="tab-content p-4 md:p-8 space-y-6">
-                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
-                            Treino A
-                        </h2>
-                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Quadríceps e Empurrar</p>
-                    </div>
-                    <div class="flex items-center gap-2 ml-4 md:ml-0">
-                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
-                            <i class="fas fa-dumbbell mr-1"></i> 24 Séries
-                        </span>
-                    </div>
-                </header>
-                
-                <div class="space-y-3" id="list-treino1">
-                    <!-- JS will populate with Cards -->
-                </div>
-                
-                <!-- Cardio Section -->
-                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
-                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
-                        <i class="fas fa-running text-2xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
-                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TREINO 2 -->
-            <div id="treino2" class="tab-content hidden p-4 md:p-8 space-y-6">
-                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
-                            Treino B
-                        </h2>
-                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Cadeia Posterior e Puxar</p>
-                    </div>
-                    <div class="flex items-center gap-2 ml-4 md:ml-0">
-                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
-                            <i class="fas fa-dumbbell mr-1"></i> 26 Séries
-                        </span>
-                    </div>
-                </header>
-                
-                <div class="space-y-3" id="list-treino2">
-                    <!-- JS will populate -->
-                </div>
-
-                <!-- Cardio Section -->
-                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
-                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
-                        <i class="fas fa-running text-2xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
-                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TREINO 3 -->
-            <div id="treino3" class="tab-content hidden p-4 md:p-8 space-y-6">
-                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
-                            Treino C
-                        </h2>
-                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Unilateral e Ombros</p>
-                    </div>
-                    <div class="flex items-center gap-2 ml-4 md:ml-0">
-                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
-                            <i class="fas fa-dumbbell mr-1"></i> 25 Séries
-                        </span>
-                    </div>
-                </header>
-                
-                <div class="space-y-3" id="list-treino3">
-                    <!-- JS will populate -->
-                </div>
-
-                <!-- Cardio Section -->
-                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
-                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
-                        <i class="fas fa-running text-2xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
-                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TREINO 4 -->
-            <div id="treino4" class="tab-content hidden p-4 md:p-8 space-y-6">
-                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
-                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
-                            Treino D
-                        </h2>
-                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Metabólico e Acabamento</p>
-                    </div>
-                    <div class="flex items-center gap-2 ml-4 md:ml-0">
-                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
-                            <i class="fas fa-dumbbell mr-1"></i> 23 Séries
-                        </span>
-                    </div>
-                </header>
-                
-                <div class="space-y-3" id="list-treino4">
-                    <!-- JS will populate -->
-                </div>
-
-                <!-- Cardio Section -->
-                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
-                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
-                        <i class="fas fa-running text-2xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
-                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-400 text-sm">
-            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                <h3 class="text-white font-bold mb-2"><i class="fas fa-layer-group text-blue-400"></i> Metodologia dos Blocos</h3>
-                <p class="mb-2">Este treino utiliza a estratégia de <strong>Agrupamento Segmentado</strong>:</p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Realizamos <strong>2 exercícios do mesmo segmento</strong> (ex: 2 de perna) seguidos, antes de mudar para o próximo grupo.</li>
-                    <li>Isso aumenta o fluxo sanguíneo local ("Pump") e a densidade do trabalho muscular.</li>
-                    <li>Músculos menores (bíceps, tríceps) e abdômen são trabalhados sempre ao final, para não prejudicar a força nos exercícios grandes.</li>
-                </ul>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                <h3 class="text-white font-bold mb-2"><i class="fas fa-calendar-check text-blue-400"></i> Agenda Sugerida</h3>
-                <div class="grid grid-cols-7 gap-1 text-center mt-2 font-mono text-xs">
-                    <div class="bg-gray-700 p-1 rounded">SEG<br><span class="text-emerald-400 font-bold">A</span></div>
-                    <div class="bg-gray-700 p-1 rounded">TER<br><span class="text-emerald-400 font-bold">B</span></div>
-                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">QUA<br>OFF</div>
-                    <div class="bg-gray-700 p-1 rounded">QUI<br><span class="text-emerald-400 font-bold">C</span></div>
-                    <div class="bg-gray-700 p-1 rounded">SEX<br><span class="text-emerald-400 font-bold">D</span></div>
-                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">SÁB<br>OFF</div>
-                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">DOM<br>OFF</div>
-                </div>
-            </div>
+    <!-- Top Bar -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-40 border-b border-rose-100 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div>
+            <h1 class="text-2xl font-bold gradient-text">Gabrielle Fit</h1>
+            <p class="text-xs text-rose-400 font-medium tracking-wider">PERSONAL TRAINER APP</p>
         </div>
+        <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center border-2 border-rose-200">
+            <span class="text-rose-500 font-bold text-lg">G</span>
+        </div>
+    </header>
 
+    <!-- Main Content Container -->
+    <main class="pt-24 px-4 max-w-lg mx-auto">
+        
+        <!-- View: TREINOS (Default) -->
+        <section id="view-workouts" class="view-section">
+            
+            <!-- Welcome Card -->
+            <div class="bg-white rounded-3xl p-6 mb-8 card-shadow relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-rose-100 rounded-full -mr-10 -mt-10 opacity-50"></div>
+                <div class="relative z-10">
+                    <p class="text-slate-400 text-sm mb-1">Olá, Gabrielle ✨</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Pronta para o treino de hoje?</h2>
+                    <div class="flex items-center gap-4">
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold text-rose-500" id="streak-count">0</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wide">Dias Seguidos</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-200"></div>
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold text-rose-500" id="total-workouts">0</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wide">Treinos Totais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Selector (Horizontal Scroll) -->
+            <h3 class="text-lg font-bold text-slate-700 mb-4 px-2">Seus Treinos</h3>
+            <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 mb-2">
+                <button onclick="switchTab('treino1')" id="btn-treino1" class="flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-md bg-gradient-to-br from-rose-500 to-pink-600 text-white transform scale-105">
+                    <span class="text-2xl opacity-80">A</span>
+                    <div class="text-left">
+                        <span class="block font-bold text-sm">Pernas</span>
+                        <span class="text-[10px] opacity-90">Foco: Quads</span>
+                    </div>
+                </button>
+                <button onclick="switchTab('treino2')" id="btn-treino2" class="flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-sm bg-white border border-rose-100 text-slate-500">
+                    <span class="text-2xl opacity-50">B</span>
+                    <div class="text-left">
+                        <span class="block font-bold text-sm">Costas</span>
+                        <span class="text-[10px] opacity-70">Posterior</span>
+                    </div>
+                </button>
+                <button onclick="switchTab('treino3')" id="btn-treino3" class="flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-sm bg-white border border-rose-100 text-slate-500">
+                    <span class="text-2xl opacity-50">C</span>
+                    <div class="text-left">
+                        <span class="block font-bold text-sm">Ombros</span>
+                        <span class="text-[10px] opacity-70">Glúteos</span>
+                    </div>
+                </button>
+                <button onclick="switchTab('treino4')" id="btn-treino4" class="flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-sm bg-white border border-rose-100 text-slate-500">
+                    <span class="text-2xl opacity-50">D</span>
+                    <div class="text-left">
+                        <span class="block font-bold text-sm">Metabólico</span>
+                        <span class="text-[10px] opacity-70">Fullbody</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Active Workout Content -->
+            <div class="mt-4">
+                <!-- Treino 1 -->
+                <div id="treino1" class="tab-content">
+                    <div class="flex justify-between items-end mb-6 px-2">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Treino A</h3>
+                            <p class="text-rose-400 text-sm">Quadríceps & Empurrar</p>
+                        </div>
+                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">24 Séries</span>
+                    </div>
+                    <div class="space-y-4" id="list-treino1"></div>
+                </div>
+
+                <!-- Treino 2 -->
+                <div id="treino2" class="tab-content hidden">
+                    <div class="flex justify-between items-end mb-6 px-2">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Treino B</h3>
+                            <p class="text-rose-400 text-sm">Posterior & Puxar</p>
+                        </div>
+                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">26 Séries</span>
+                    </div>
+                    <div class="space-y-4" id="list-treino2"></div>
+                </div>
+
+                <!-- Treino 3 -->
+                <div id="treino3" class="tab-content hidden">
+                    <div class="flex justify-between items-end mb-6 px-2">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Treino C</h3>
+                            <p class="text-rose-400 text-sm">Glúteo & Ombros</p>
+                        </div>
+                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">25 Séries</span>
+                    </div>
+                    <div class="space-y-4" id="list-treino3"></div>
+                </div>
+
+                <!-- Treino 4 -->
+                <div id="treino4" class="tab-content hidden">
+                    <div class="flex justify-between items-end mb-6 px-2">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">Treino D</h3>
+                            <p class="text-rose-400 text-sm">Metabólico & Acabamento</p>
+                        </div>
+                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">23 Séries</span>
+                    </div>
+                    <div class="space-y-4" id="list-treino4"></div>
+                </div>
+            </div>
+
+            <!-- Cardio Box -->
+            <div class="mt-8 bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+                <i class="fas fa-heart-pulse absolute -right-4 -bottom-4 text-8xl text-white opacity-5"></i>
+                <div class="relative z-10 flex items-center gap-4">
+                    <div class="bg-white/20 p-3 rounded-full">
+                        <i class="fas fa-person-running text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg">Cardio Final</h4>
+                        <p class="text-sm text-slate-300">15' Esteira (Mod) <span class="text-rose-400 font-bold">OU</span> 5' Trote</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finish Workout Button -->
+            <button onclick="finishWorkout()" class="w-full mt-8 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold py-5 rounded-3xl shadow-lg shadow-rose-500/30 active:scale-95 transition-transform flex items-center justify-center gap-2">
+                <i class="fas fa-check-circle text-xl"></i>
+                <span>CONCLUIR TREINO</span>
+            </button>
+            <p class="text-center text-xs text-slate-400 mt-4 mb-8">Marque os exercícios conforme realiza</p>
+
+        </section>
+
+        <!-- View: STATS (Hidden by default) -->
+        <section id="view-stats" class="view-section hidden">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6 px-2">Seu Progresso</h2>
+            
+            <!-- Calendar Grid -->
+            <div class="bg-white rounded-3xl p-6 card-shadow mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-slate-700">Calendário</h3>
+                    <span class="text-xs bg-rose-100 text-rose-500 px-2 py-1 rounded-lg font-bold" id="current-month-label">Mês Atual</span>
+                </div>
+                <div class="grid grid-cols-7 gap-2 text-center text-xs font-medium text-slate-400 mb-2">
+                    <div>D</div><div>S</div><div>T</div><div>Q</div><div>Q</div><div>S</div><div>S</div>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center text-sm">
+                    <!-- JS generated -->
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="bg-white rounded-3xl p-6 card-shadow mb-8">
+                <h3 class="font-bold text-slate-700 mb-4">Frequência por Treino</h3>
+                <canvas id="workoutChart" height="250"></canvas>
+            </div>
+
+            <!-- Reset Data -->
+            <button onclick="confirmReset()" class="text-xs text-rose-300 underline w-full text-center pb-8">Resetar todos os dados</button>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 w-full glass-nav z-50 pb-safe">
+        <div class="flex justify-around items-center h-20 max-w-lg mx-auto">
+            <button onclick="switchView('workouts')" id="nav-workouts" class="flex flex-col items-center gap-1 text-rose-500 transition-colors">
+                <i class="fas fa-dumbbell text-xl"></i>
+                <span class="text-[10px] font-bold">Treinos</span>
+            </button>
+            
+            <button onclick="switchView('stats')" id="nav-stats" class="flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400">
+                <i class="fas fa-chart-pie text-xl"></i>
+                <span class="text-[10px] font-bold">Progresso</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center transform scale-90 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
+                🏆
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2 font-serif">Parabéns!</h3>
+            <p class="text-slate-500 mb-6">Mais um treino pra conta! Você está cada dia mais forte.</p>
+            <button onclick="closeModal()" class="w-full bg-rose-500 text-white font-bold py-3 rounded-2xl shadow-lg shadow-rose-500/30">
+                Continuar
+            </button>
+        </div>
     </div>
 
     <script>
+        // --- DATA & CONFIG ---
         const workouts = {
             treino1: [
-                // BLOCO 1: PERNAS
-                { name: "Agachamento Livre", sets: "4", reps: "6 a 8", note: "Pés largura ombros. Amplitude máxima com controle." },
-                { name: "Elevação de Quadril (Barra)", sets: "4", reps: "10 a 12", note: "Contraia glúteo por 2s no topo. Carga alta." },
-                // BLOCO 2: SUPERIOR
-                { name: "Supino Inclinado (Halteres)", sets: "3", reps: "10 a 12", note: "Banco 30-45º. Alongue bem na descida." },
-                { name: "Desenvolvimento (Halteres)", sets: "3", reps: "10 a 12", note: "Tronco firme. Sem impulso." },
-                // ACESSÓRIOS
-                { name: "Cadeira Extensora", sets: "4", reps: "15 a 20", note: "Pico de contração de 2s a cada repetição." },
-                // FINALIZAÇÃO (PEQUENOS)
-                { name: "Tríceps Testa ou Polia", sets: "3", reps: "12", note: "Cotovelos fechados." },
+                { name: "Agachamento Livre", sets: "4", reps: "6-8", note: "Amplitude máxima com controle." },
+                { name: "Elevação Pélvica", sets: "4", reps: "10-12", note: "Contraia glúteo por 2s no topo." },
+                { name: "Supino Inclinado", sets: "3", reps: "10-12", note: "Halteres. Alongue na descida." },
+                { name: "Desenvolvimento", sets: "3", reps: "10-12", note: "Tronco firme. Sem impulso." },
+                { name: "Cad. Extensora", sets: "4", reps: "15-20", note: "Pico de contração de 2s." },
+                { name: "Tríceps Testa", sets: "3", reps: "12", note: "Cotovelos fechados." },
                 { name: "Abdominal Infra", sets: "3", reps: "15", note: "Eleve o quadril do chão." }
             ],
             treino2: [
-                // BLOCO 1: PERNAS POSTERIOR
-                { name: "Levantamento Terra", sets: "4", reps: "5 a 8", note: "Barra colada na canela. Coluna neutra." },
-                { name: "Leg Press 45º", sets: "4", reps: "10 a 15", note: "Pés mais baixos (foco quadríceps) sem tirar calcanhar." },
-                // BLOCO 2: SUPERIOR PUXAR
-                { name: "Puxada Triângulo", sets: "4", reps: "10 a 12", note: "Traga o triângulo no peito superior." },
-                { name: "Remada Curvada", sets: "4", reps: "10 a 12", note: "Pegada pronada. Tronco estável." },
-                // ACESSÓRIOS
-                { name: "Cadeira Flexora", sets: "4", reps: "12 a 15", note: "Quadril fixo no banco." },
-                // FINALIZAÇÃO (PEQUENOS)
-                { name: "Panturrilha Sentado", sets: "3", reps: "15 a 20", note: "Amplitude máxima." },
-                { name: "Rosca Direta", sets: "3", reps: "12", note: "Sem balanço. Foco total no bíceps." }
+                { name: "Levantamento Terra", sets: "4", reps: "5-8", note: "Barra colada na canela." },
+                { name: "Leg Press 45º", sets: "4", reps: "10-15", note: "Pés baixos. Não tire o calcanhar." },
+                { name: "Puxada Triângulo", sets: "4", reps: "10-12", note: "Traga no peito superior." },
+                { name: "Remada Curvada", sets: "4", reps: "10-12", note: "Pegada pronada. Tronco estável." },
+                { name: "Mesa Flexora", sets: "4", reps: "12-15", note: "Quadril fixo no banco." },
+                { name: "Panturrilha", sets: "3", reps: "15-20", note: "Amplitude máxima." },
+                { name: "Rosca Direta", sets: "3", reps: "12", note: "Sem balanço." }
             ],
             treino3: [
-                // BLOCO 1: UNILATERAL/PERNA
-                { name: "Agachamento Búlgaro", sets: "4", reps: "10 a 12", note: "Tronco levemente à frente. Controle a descida." },
-                { name: "Stiff com Halteres", sets: "4", reps: "10 a 12", note: "Alongamento máximo do posterior." },
-                // BLOCO 2: SUPERIOR
-                { name: "Elevação Lateral", sets: "3", reps: "12 + 15", note: "Drop-set na última série." },
-                { name: "Pulldown Corda", sets: "3", reps: "12 a 15", note: "Braços estendidos. Foco na dorsal e tríceps longo." },
-                // ACESSÓRIOS
-                { name: "Elevação Pélvica (Máq/Barra)", sets: "4", reps: "12 a 15", note: "Foco metabólico (mais repetições)." },
-                // FINALIZAÇÃO (PEQUENOS)
-                { name: "Tríceps Corda", sets: "3", reps: "12", note: "Abra a corda no final do movimento." }
+                { name: "Agachamento Búlgaro", sets: "4", reps: "10-12", note: "Tronco inclinado à frente." },
+                { name: "Stiff Halteres", sets: "4", reps: "10-12", note: "Alongamento máximo." },
+                { name: "Elevação Lateral", sets: "3", reps: "12+15", note: "Drop-set na última." },
+                { name: "Pulldown Corda", sets: "3", reps: "12-15", note: "Braços estendidos." },
+                { name: "Elevação Pélvica", sets: "4", reps: "15", note: "Foco metabólico (rápido)." },
+                { name: "Tríceps Corda", sets: "3", reps: "12", note: "Abra a corda no final." }
             ],
             treino4: [
-                // BLOCO 1: PERNAS
-                { name: "Agachamento Livre", sets: "4", reps: "10 a 12", note: "Carga moderada, foco na técnica." },
-                { name: "Abdução de Quadril", sets: "4", reps: "15 a 20", note: "Tronco inclinado à frente. Segure 2s." },
-                // ACESSÓRIOS PERNA
-                { name: "Cadeira Extensora", sets: "3", reps: "15+", note: "Falha concêntrica." },
-                { name: "Cadeira Flexora", sets: "3", reps: "15+", note: "Movimento contínuo." },
-                // FINALIZAÇÃO (PEQUENOS)
+                { name: "Agachamento Livre", sets: "4", reps: "10-12", note: "Carga moderada, técnica perfeita." },
+                { name: "Abdução Quadril", sets: "4", reps: "20", note: "Segure 2s na contração." },
+                { name: "Cad. Extensora", sets: "3", reps: "15+", note: "Falha total." },
+                { name: "Cad. Flexora", sets: "3", reps: "15+", note: "Movimento contínuo." },
                 { name: "Rosca Martelo", sets: "3", reps: "12", note: "Pegada neutra." },
-                { name: "Prancha Ventral", sets: "3", reps: "30-45s", note: "Corpo em linha reta. Abdômen travado." }
+                { name: "Prancha", sets: "3", reps: "45s", note: "Abdômen travado." }
             ]
         };
 
+        let currentTab = 'treino1';
+        let userHistory = JSON.parse(localStorage.getItem('gabrielle_history')) || [];
+        // Migration check: ensure structure
+        if(!Array.isArray(userHistory)) userHistory = [];
+
+        // --- CORE FUNCTIONS ---
+
+        function init() {
+            renderList('treino1', workouts.treino1);
+            updateStatsUI();
+            
+            // Set current month label
+            const now = new Date();
+            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            document.getElementById('current-month-label').innerText = months[now.getMonth()];
+        }
+
         function renderList(treinoId, data) {
             const container = document.getElementById(`list-${treinoId}`);
+            if(!container) return;
+            
             container.innerHTML = '';
             
             data.forEach((exercise, index) => {
                 const card = document.createElement('div');
-                card.className = 'bg-gray-700/20 p-4 rounded-xl border border-gray-700/50 hover:bg-gray-700/40 hover:border-emerald-500/30 transition-all group cursor-pointer';
-                card.onclick = function(e) { 
-                    // Prevent toggle if clicking links/buttons inside (future proofing)
-                    if(e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
-                        toggleCheck(this); 
-                    }
-                };
+                card.className = 'bg-white p-5 rounded-2xl border border-rose-50 shadow-sm flex items-start gap-4 cursor-pointer transition-all active:scale-[0.98] select-none group';
+                card.onclick = function() { toggleCheck(this); };
                 
                 card.innerHTML = `
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        
-                        <!-- Header: Check + Name -->
-                        <div class="flex items-start gap-4 flex-1">
-                            <div class="mt-1 w-6 h-6 rounded-lg border-2 border-gray-600 check-circle flex items-center justify-center group-hover:border-emerald-500 transition-all bg-gray-800 shrink-0">
-                                <i class="fas fa-check text-sm text-transparent transition-colors"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-100 text-lg group-hover:text-emerald-400 transition-colors">${exercise.name}</h3>
-                                <div class="flex flex-wrap gap-2 mt-2 md:hidden">
-                                    <span class="text-xs font-bold text-emerald-400 bg-emerald-900/20 px-2 py-1 rounded border border-emerald-900/30">
-                                        ${exercise.sets} Séries
-                                    </span>
-                                    <span class="text-xs font-medium text-gray-300 bg-gray-700 px-2 py-1 rounded border border-gray-600">
-                                        ${exercise.reps} Reps
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Desktop Stats -->
-                        <div class="hidden md:flex items-center gap-8 mr-4">
-                            <div class="text-center">
-                                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Séries</p>
-                                <p class="text-emerald-400 font-bold text-lg">${exercise.sets}</p>
-                            </div>
-                            <div class="text-center w-24">
-                                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Reps</p>
-                                <p class="text-gray-200 font-medium">${exercise.reps}</p>
-                            </div>
-                        </div>
-
+                    <div class="mt-1 w-6 h-6 rounded-full border-2 border-slate-200 check-circle flex items-center justify-center shrink-0 bg-slate-50">
+                        <i class="fas fa-check text-[10px] text-transparent transition-colors"></i>
                     </div>
-                    
-                    <!-- Notes / Instructions -->
-                    <div class="mt-3 pt-3 border-t border-gray-700/50 flex gap-3 text-sm text-gray-400">
-                        <i class="fas fa-lightbulb text-yellow-500/80 mt-1 shrink-0"></i>
-                        <p class="italic leading-relaxed">${exercise.note}</p>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-bold text-slate-700 text-lg leading-tight group-hover:text-rose-500 transition-colors">${exercise.name}</h4>
+                        </div>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded-lg border border-rose-100">${exercise.sets} x ${exercise.reps}</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2 italic flex items-center gap-1">
+                            <i class="fas fa-info-circle text-rose-300"></i> ${exercise.note}
+                        </p>
                     </div>
                 `;
-                
                 container.appendChild(card);
             });
-
-            // Restore checked state if needed (simple local logic)
-            // For now, checks are reset on reload as per original simplicity
         }
 
-        function toggleCheck(row) {
-            const checkCircle = row.querySelector('.check-circle');
-            const checkIcon = row.querySelector('.fa-check');
-            const title = row.querySelector('h3');
-            
-            if (row.classList.contains('bg-emerald-900/20')) {
+        function toggleCheck(card) {
+            const circle = card.querySelector('.check-circle');
+            const icon = card.querySelector('.fa-check');
+            const title = card.querySelector('h4');
+
+            if (card.classList.contains('bg-rose-50')) {
                 // Uncheck
-                row.classList.remove('bg-emerald-900/20', 'border-emerald-500/50');
-                row.classList.add('bg-gray-700/20', 'border-gray-700/50');
+                card.classList.remove('bg-rose-50', 'border-rose-200');
+                card.classList.add('bg-white', 'border-rose-50');
                 
-                checkCircle.classList.remove('bg-emerald-500', 'border-emerald-500');
-                checkCircle.classList.add('bg-gray-800', 'border-gray-600');
+                circle.classList.remove('bg-rose-500', 'border-rose-500');
+                circle.classList.add('bg-slate-50', 'border-slate-200');
                 
-                checkIcon.classList.remove('text-white');
-                checkIcon.classList.add('text-transparent');
+                icon.classList.remove('text-white');
+                icon.classList.add('text-transparent');
                 
-                title.classList.remove('text-emerald-400', 'line-through', 'opacity-50');
-                title.classList.add('text-gray-100');
+                title.classList.remove('text-rose-400', 'line-through');
+                title.classList.add('text-slate-700');
             } else {
                 // Check
-                row.classList.remove('bg-gray-700/20', 'border-gray-700/50');
-                row.classList.add('bg-emerald-900/20', 'border-emerald-500/50');
+                card.classList.remove('bg-white', 'border-rose-50');
+                card.classList.add('bg-rose-50', 'border-rose-200');
                 
-                checkCircle.classList.remove('bg-gray-800', 'border-gray-600');
-                checkCircle.classList.add('bg-emerald-500', 'border-emerald-500');
+                circle.classList.remove('bg-slate-50', 'border-slate-200');
+                circle.classList.add('bg-rose-500', 'border-rose-500');
                 
-                checkIcon.classList.remove('text-transparent');
-                checkIcon.classList.add('text-white');
+                icon.classList.remove('text-transparent');
+                icon.classList.add('text-white');
                 
-                title.classList.remove('text-gray-100');
-                title.classList.add('text-emerald-400', 'line-through', 'opacity-50');
+                title.classList.remove('text-slate-700');
+                title.classList.add('text-rose-400', 'line-through');
+                
+                // Haptic feedback if available
+                if(navigator.vibrate) navigator.vibrate(10);
             }
         }
 
         function switchTab(tabId) {
-            // Hide all contents
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.add('hidden');
-            });
+            currentTab = tabId;
             
-            // Deactivate all buttons
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Reset buttons styling
             document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
-                btn.className = 'tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation';
+                btn.className = 'flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-sm bg-white border border-rose-100 text-slate-500 transform scale-100';
             });
             
             // Show selected content
             document.getElementById(tabId).classList.remove('hidden');
             
-            // Activate button
+            // Highlight button
             const activeBtn = document.getElementById(`btn-${tabId}`);
-            activeBtn.className = 'tab-active py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation';
+            activeBtn.className = 'flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-md bg-gradient-to-br from-rose-500 to-pink-600 text-white transform scale-105';
             
-            // Render list if empty
+            // Lazy render
             const listContainer = document.getElementById(`list-${tabId}`);
             if (listContainer && listContainer.children.length === 0) {
                 renderList(tabId, workouts[tabId]);
             }
         }
 
-        // Initial render
-        document.addEventListener('DOMContentLoaded', () => {
-            renderList('treino1', workouts.treino1);
-        });
+        function switchView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+            
+            // Update Nav Icons
+            const navWorkouts = document.getElementById('nav-workouts');
+            const navStats = document.getElementById('nav-stats');
+            
+            if(viewName === 'workouts') {
+                navWorkouts.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
+                navStats.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+            } else {
+                navStats.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
+                navWorkouts.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                renderCalendar();
+                renderChart();
+            }
+            
+            window.scrollTo(0,0);
+        }
+
+        // --- LOGIC: FINISH WORKOUT ---
+
+        function finishWorkout() {
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Save to history
+            const entry = {
+                date: today,
+                workoutId: currentTab,
+                timestamp: Date.now()
+            };
+            
+            userHistory.push(entry);
+            localStorage.setItem('gabrielle_history', JSON.stringify(userHistory));
+            
+            // Update UI Stats immediately
+            updateStatsUI();
+            
+            // Reset checks visual only
+            const container = document.getElementById(`list-${currentTab}`);
+            const checkedCards = container.querySelectorAll('.bg-rose-50'); // Checked state class
+            checkedCards.forEach(card => toggleCheck(card)); // Toggle back to unchecked
+            
+            // Show Celebration
+            showCelebration();
+        }
+
+        function showCelebration() {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            
+            // Confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#f43f5e', '#fb7185', '#fecdd3']
+            });
+            
+            // Modal Animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-90', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-90', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- LOGIC: STATS & DASHBOARD ---
+
+        function updateStatsUI() {
+            // Total Workouts
+            document.getElementById('total-workouts').innerText = userHistory.length;
+            
+            // Streak Calculation
+            if(userHistory.length === 0) {
+                document.getElementById('streak-count').innerText = "0";
+                return;
+            }
+            
+            // Sort dates
+            const sortedDates = [...new Set(userHistory.map(h => h.date))].sort();
+            let streak = 0;
+            let currentCheck = new Date();
+            currentCheck.setHours(0,0,0,0);
+            
+            // Check if trained today
+            const todayStr = currentCheck.toISOString().split('T')[0];
+            const trainedToday = sortedDates.includes(todayStr);
+            
+            if(!trainedToday) {
+                // If not today, check if trained yesterday to keep streak alive
+                currentCheck.setDate(currentCheck.getDate() - 1);
+            }
+            
+            while(true) {
+                const checkStr = currentCheck.toISOString().split('T')[0];
+                if(sortedDates.includes(checkStr)) {
+                    streak++;
+                    currentCheck.setDate(currentCheck.getDate() - 1);
+                } else {
+                    break;
+                }
+            }
+            
+            document.getElementById('streak-count').innerText = streak;
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+            
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            
+            // Empty slots for start of month
+            for(let i=0; i<firstDay.getDay(); i++) {
+                const div = document.createElement('div');
+                grid.appendChild(div);
+            }
+            
+            // Days
+            const trainedDates = userHistory.map(h => h.date);
+            
+            for(let d=1; d<=lastDay.getDate(); d++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'aspect-square flex items-center justify-center rounded-lg text-slate-600';
+                dayDiv.innerText = d;
+                
+                // Check format YYYY-MM-DD
+                const checkDate = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                
+                if(trainedDates.includes(checkDate)) {
+                    dayDiv.classList.add('bg-rose-500', 'text-white', 'font-bold', 'shadow-md', 'shadow-rose-200');
+                } else if (d === now.getDate()) {
+                    dayDiv.classList.add('border', 'border-rose-200', 'text-rose-400');
+                }
+                
+                grid.appendChild(dayDiv);
+            }
+        }
+
+        let chartInstance = null;
+
+        function renderChart() {
+            const ctx = document.getElementById('workoutChart').getContext('2d');
+            
+            // Count frequency
+            const counts = { 'A': 0, 'B': 0, 'C': 0, 'D': 0 };
+            userHistory.forEach(h => {
+                if(h.workoutId === 'treino1') counts.A++;
+                if(h.workoutId === 'treino2') counts.B++;
+                if(h.workoutId === 'treino3') counts.C++;
+                if(h.workoutId === 'treino4') counts.D++;
+            });
+            
+            if(chartInstance) chartInstance.destroy();
+            
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['A (Perna)', 'B (Costas)', 'C (Ombro)', 'D (Metab)'],
+                    datasets: [{
+                        label: 'Vezes Realizado',
+                        data: [counts.A, counts.B, counts.C, counts.D],
+                        backgroundColor: [
+                            'rgba(244, 63, 94, 0.8)', // Rose 500
+                            'rgba(251, 113, 133, 0.8)', // Rose 400
+                            'rgba(253, 164, 175, 0.8)', // Rose 300
+                            'rgba(254, 205, 211, 0.8)', // Rose 200
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { display: false }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function confirmReset() {
+            if(confirm('Tem certeza? Isso apagará todo seu histórico.')) {
+                localStorage.removeItem('gabrielle_history');
+                userHistory = [];
+                location.reload();
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', init);
 
     </script>
 </body>
