@@ -314,42 +314,94 @@
         </div>
     </div>
 
+    <!-- Exercise Details Modal -->
+    <div id="exercise-modal" class="fixed inset-0 bg-black/60 z-[70] hidden flex items-end sm:items-center justify-center sm:p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-t-3xl sm:rounded-3xl p-0 w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col transform transition-all duration-300 translate-y-full sm:translate-y-10 opacity-0" id="exercise-modal-content">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-rose-100 flex justify-between items-start bg-rose-50/50">
+                <div>
+                    <span class="text-xs font-bold text-rose-500 bg-rose-100 px-2 py-1 rounded-lg uppercase tracking-wider mb-2 inline-block">Detalhes do Exercício</span>
+                    <h3 class="text-2xl font-bold text-slate-800 font-serif leading-tight" id="modal-title">Nome do Exercício</h3>
+                </div>
+                <button onclick="closeExerciseModal()" class="w-8 h-8 rounded-full bg-white border border-rose-200 flex items-center justify-center text-rose-400 hover:bg-rose-500 hover:text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto" id="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-rose-100 bg-white">
+                <button onclick="closeExerciseModal()" class="w-full bg-slate-100 text-slate-600 font-bold py-3 rounded-2xl hover:bg-slate-200 transition-colors">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- DATA & CONFIG ---
         const workouts = {
             treino1: [
-                { name: "Agachamento Livre", sets: "4", reps: "6-8", note: "Amplitude máxima com controle." },
-                { name: "Elevação Pélvica", sets: "4", reps: "10-12", note: "Contraia glúteo por 2s no topo." },
-                { name: "Supino Inclinado", sets: "3", reps: "10-12", note: "Halteres. Alongue na descida." },
-                { name: "Desenvolvimento", sets: "3", reps: "10-12", note: "Tronco firme. Sem impulso." },
-                { name: "Cad. Extensora", sets: "4", reps: "15-20", note: "Pico de contração de 2s." },
-                { name: "Tríceps Testa", sets: "3", reps: "12", note: "Cotovelos fechados." },
-                { name: "Abdominal Infra", sets: "3", reps: "15", note: "Eleve o quadril do chão." }
+                { 
+                    name: "Squat Libre (Agachamento Livre)", 
+                    sets: "4", 
+                    reps: "6-8", 
+                    note: "Amplitude máxima com controle.",
+                    details: {
+                        objectives: "Fortalecimento global de membros inferiores (quadríceps, glúteos e posteriores) e core.",
+                        instructions: [
+                            "Posicione a barra sobre o trapézio (parte carnuda das costas), pés na largura dos ombros, pontas levemente para fora.",
+                            "Inspire fundo travando o abdômen (Bracing).",
+                            "Inicie o movimento projetando o quadril para trás e joelhos para fora.",
+                            "Desça até a máxima amplitude mantendo a coluna neutra.",
+                            "Empurre o chão com força para subir, expirando no final do movimento."
+                        ],
+                        positioning: "Em pé, pés firmes no chão, coluna alinhada.",
+                        materials: ["Barra Olímpica", "Anilhas", "Gaiola de Agachamento (Rack)"],
+                        tips: [
+                            "Mantenha o olhar no horizonte, não olhe para cima nem para baixo.",
+                            "Não deixe os joelhos entrarem (valgo dinâmico) na subida.",
+                            "Use cinturão apenas se a carga for muito elevada (>80% 1RM)."
+                        ],
+                        evaluation: "Execução válida se o quadril passar a linha do joelho (quebra da paralela) sem curvar a lombar."
+                    }
+                },
+                { name: "Relevé de Bassin (Elevação Pélvica)", sets: "4", reps: "10-12", note: "Contraia glúteo por 2s no topo." },
+                { name: "Développé Incliné (Supino Inclinado)", sets: "3", reps: "10-12", note: "Halteres. Alongue na descida." },
+                { name: "Développé Militaire (Desenvolvimento)", sets: "3", reps: "10-12", note: "Tronco firme. Sem impulso." },
+                { name: "Leg Extension (Cad. Extensora)", sets: "4", reps: "15-20", note: "Pico de contração de 2s." },
+                { name: "Barre au Front (Tríceps Testa)", sets: "3", reps: "12", note: "Cotovelos fechados." },
+                { name: "Relevé de Jambes (Abdominal Infra)", sets: "3", reps: "15", note: "Eleve o quadril do chão." }
             ],
             treino2: [
-                { name: "Levantamento Terra", sets: "4", reps: "5-8", note: "Barra colada na canela." },
-                { name: "Leg Press 45º", sets: "4", reps: "10-15", note: "Pés baixos. Não tire o calcanhar." },
-                { name: "Puxada Triângulo", sets: "4", reps: "10-12", note: "Traga no peito superior." },
-                { name: "Remada Curvada", sets: "4", reps: "10-12", note: "Pegada pronada. Tronco estável." },
-                { name: "Mesa Flexora", sets: "4", reps: "12-15", note: "Quadril fixo no banco." },
-                { name: "Panturrilha", sets: "3", reps: "15-20", note: "Amplitude máxima." },
-                { name: "Rosca Direta", sets: "3", reps: "12", note: "Sem balanço." }
+                { name: "Soulevé de Terre (Levantamento Terra)", sets: "4", reps: "5-8", note: "Barra colada na canela." },
+                { name: "Presse à Cuisses 45º (Leg Press 45º)", sets: "4", reps: "10-15", note: "Pés baixos. Não tire o calcanhar." },
+                { name: "Tirage Poitrine (Puxada Triângulo)", sets: "4", reps: "10-12", note: "Traga no peito superior." },
+                { name: "Rowing Barre (Remada Curvada)", sets: "4", reps: "10-12", note: "Pegada pronada. Tronco estável." },
+                { name: "Leg Curl Allongé (Mesa Flexora)", sets: "4", reps: "12-15", note: "Quadril fixo no banco." },
+                { name: "Extension des Mollets (Panturrilha)", sets: "3", reps: "15-20", note: "Amplitude máxima." },
+                { name: "Curl Barre (Rosca Direta)", sets: "3", reps: "12", note: "Sem balanço." }
             ],
             treino3: [
-                { name: "Agachamento Búlgaro", sets: "4", reps: "10-12", note: "Tronco inclinado à frente." },
-                { name: "Stiff Halteres", sets: "4", reps: "10-12", note: "Alongamento máximo." },
-                { name: "Elevação Lateral", sets: "3", reps: "12+15", note: "Drop-set na última." },
-                { name: "Pulldown Corda", sets: "3", reps: "12-15", note: "Braços estendidos." },
-                { name: "Elevação Pélvica", sets: "4", reps: "15", note: "Foco metabólico (rápido)." },
-                { name: "Tríceps Corda", sets: "3", reps: "12", note: "Abra a corda no final." }
+                { name: "Fente Bulgare (Agachamento Búlgaro)", sets: "4", reps: "10-12", note: "Tronco inclinado à frente." },
+                { name: "Soulevé de Terre Jambes Tendues (Stiff)", sets: "4", reps: "10-12", note: "Alongamento máximo." },
+                { name: "Élévation Latérale (Elevação Lateral)", sets: "3", reps: "12+15", note: "Drop-set na última." },
+                { name: "Extension Triceps Poulie (Pulldown Corda)", sets: "3", reps: "12-15", note: "Braços estendidos." },
+                { name: "Relevé de Bassin (Elevação Pélvica)", sets: "4", reps: "15", note: "Foco metabólico (rápido)." },
+                { name: "Extension Triceps Corde (Tríceps Corda)", sets: "3", reps: "12", note: "Abra a corda no final." }
             ],
             treino4: [
-                { name: "Agachamento Livre", sets: "4", reps: "10-12", note: "Carga moderada, técnica perfeita." },
-                { name: "Abdução Quadril", sets: "4", reps: "20", note: "Segure 2s na contração." },
-                { name: "Cad. Extensora", sets: "3", reps: "15+", note: "Falha total." },
-                { name: "Cad. Flexora", sets: "3", reps: "15+", note: "Movimento contínuo." },
-                { name: "Rosca Martelo", sets: "3", reps: "12", note: "Pegada neutra." },
-                { name: "Prancha", sets: "3", reps: "45s", note: "Abdômen travado." }
+                { name: "Squat Libre (Agachamento Livre)", sets: "4", reps: "10-12", note: "Carga moderada, técnica perfeita." },
+                { name: "Abduction de la Hanche (Abdução Quadril)", sets: "4", reps: "20", note: "Segure 2s na contração." },
+                { name: "Leg Extension (Cad. Extensora)", sets: "3", reps: "15+", note: "Falha total." },
+                { name: "Leg Curl Assis (Cad. Flexora)", sets: "3", reps: "15+", note: "Movimento contínuo." },
+                { name: "Curl Marteau (Rosca Martelo)", sets: "3", reps: "12", note: "Pegada neutra." },
+                { name: "Gainage (Prancha)", sets: "3", reps: "45s", note: "Abdômen travado." }
             ]
         };
 
@@ -379,8 +431,19 @@
             data.forEach((exercise, index) => {
                 const card = document.createElement('div');
                 card.className = 'bg-white p-5 rounded-2xl border border-rose-50 shadow-sm flex items-start gap-4 cursor-pointer transition-all active:scale-[0.98] select-none group';
-                card.onclick = function() { toggleCheck(this); };
+                card.onclick = function(e) { 
+                    if(!e.target.closest('.details-btn')) {
+                        toggleCheck(this); 
+                    }
+                };
                 
+                // Details Button HTML (only if details exist)
+                const detailsBtn = exercise.details ? `
+                    <button onclick="openExerciseModal('${treinoId}', ${index})" class="details-btn mt-3 w-full py-2 bg-rose-50 text-rose-500 text-xs font-bold rounded-xl border border-rose-100 hover:bg-rose-100 transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-eye"></i> Ver Instruções Detalhadas
+                    </button>
+                ` : '';
+
                 card.innerHTML = `
                     <div class="mt-1 w-6 h-6 rounded-full border-2 border-slate-200 check-circle flex items-center justify-center shrink-0 bg-slate-50">
                         <i class="fas fa-check text-[10px] text-transparent transition-colors"></i>
@@ -395,6 +458,7 @@
                         <p class="text-xs text-slate-400 mt-2 italic flex items-center gap-1">
                             <i class="fas fa-info-circle text-rose-300"></i> ${exercise.note}
                         </p>
+                        ${detailsBtn}
                     </div>
                 `;
                 container.appendChild(card);
@@ -538,6 +602,104 @@
             
             content.classList.remove('scale-100', 'opacity-100');
             content.classList.add('scale-90', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- EXERCISE DETAILS MODAL LOGIC ---
+
+        function openExerciseModal(treinoId, index) {
+            const exercise = workouts[treinoId][index];
+            if(!exercise.details) return;
+
+            const d = exercise.details;
+            const modal = document.getElementById('exercise-modal');
+            const content = document.getElementById('exercise-modal-content');
+            const body = document.getElementById('modal-body');
+            
+            // Set Title
+            document.getElementById('modal-title').innerText = exercise.name;
+            
+            // Build Content
+            let html = `
+                <div class="space-y-6">
+                    <!-- Objectives -->
+                    <div>
+                        <h4 class="font-bold text-slate-700 mb-2 flex items-center gap-2">
+                            <i class="fas fa-bullseye text-rose-500"></i> Objetivos
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            ${d.objectives}
+                        </p>
+                    </div>
+
+                    <!-- Positioning & Materials -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                            <h4 class="font-bold text-rose-600 text-sm mb-1">Posicionamento</h4>
+                            <p class="text-xs text-slate-600">${d.positioning}</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-slate-600 text-sm mb-1">Materiais</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${d.materials.map(m => `<span class="text-[10px] font-bold bg-white px-2 py-1 rounded border border-slate-200 text-slate-500">${m}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div>
+                        <h4 class="font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <i class="fas fa-list-ol text-rose-500"></i> Passo a Passo
+                        </h4>
+                        <div class="space-y-3">
+                            ${d.instructions.map((step, i) => `
+                                <div class="flex gap-3">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500 text-white text-xs font-bold flex items-center justify-center">${i+1}</span>
+                                    <p class="text-sm text-slate-600 leading-snug pt-0.5">${step}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Tips -->
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                        <h4 class="font-bold text-amber-600 mb-2 flex items-center gap-2 text-sm">
+                            <i class="fas fa-lightbulb"></i> Dicas de Segurança
+                        </h4>
+                        <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 ml-1">
+                            ${d.tips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <!-- Evaluation -->
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-600 mb-1 flex items-center gap-2 text-sm">
+                            <i class="fas fa-check-circle"></i> Critério de Sucesso
+                        </h4>
+                        <p class="text-xs text-slate-600 italic">"${d.evaluation}"</p>
+                    </div>
+                </div>
+            `;
+            
+            body.innerHTML = html;
+
+            // Show Modal
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('translate-y-full', 'opacity-0');
+                content.classList.add('translate-y-0', 'sm:translate-y-0', 'opacity-100');
+            }, 10);
+        }
+
+        function closeExerciseModal() {
+            const modal = document.getElementById('exercise-modal');
+            const content = document.getElementById('exercise-modal-content');
+            
+            content.classList.remove('translate-y-0', 'sm:translate-y-0', 'opacity-100');
+            content.classList.add('translate-y-full', 'opacity-0');
             
             setTimeout(() => {
                 modal.classList.add('hidden');
