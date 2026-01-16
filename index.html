@@ -2,17 +2,28 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#111827">
+    <meta name="description" content="Planejamento de Treino Personalizado - Gabrielle Mantovani">
     <title>Treino Fullbody - Gabrielle Mantovani</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
         .tab-active { 
-            background-color: #10B981; 
+            background: linear-gradient(135deg, #10B981, #059669); 
             color: white; 
-            border-color: #10B981;
+            border-color: #047857;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
         }
         .tab-inactive { 
             background-color: #1F2937; 
@@ -22,20 +33,17 @@
         .tab-inactive:hover {
             background-color: #374151;
             color: white;
+            border-color: #4B5563;
         }
         .check-circle {
-            transition: all 0.2s ease;
-        }
-        .row-checked .text-gray-100 {
-            text-decoration: line-through;
-            color: #6B7280;
-        }
-        .row-checked .text-emerald-400 {
-            color: #059669;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .cardio-box {
-            background: linear-gradient(45deg, #1F2937, #111827);
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
         }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
@@ -64,187 +72,161 @@
         </header>
 
         <!-- Navigation Tabs -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-            <button onclick="switchTab('treino1')" id="btn-treino1" class="tab-active py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+        <nav class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" aria-label="Seleção de Treinos">
+            <button onclick="switchTab('treino1')" id="btn-treino1" class="tab-active py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
                 <span>TREINO A</span>
-                <span class="text-xs opacity-75 font-normal">Base: Agachamento</span>
+                <span class="text-xs opacity-75 font-normal mt-1">Quadríceps</span>
             </button>
-            <button onclick="switchTab('treino2')" id="btn-treino2" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+            <button onclick="switchTab('treino2')" id="btn-treino2" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
                 <span>TREINO B</span>
-                <span class="text-xs opacity-75 font-normal">Base: Terra</span>
+                <span class="text-xs opacity-75 font-normal mt-1">Posterior</span>
             </button>
-            <button onclick="switchTab('treino3')" id="btn-treino3" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+            <button onclick="switchTab('treino3')" id="btn-treino3" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
                 <span>TREINO C</span>
-                <span class="text-xs opacity-75 font-normal">Base: Unilateral</span>
+                <span class="text-xs opacity-75 font-normal mt-1">Glúteo/Ombro</span>
             </button>
-            <button onclick="switchTab('treino4')" id="btn-treino4" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+            <button onclick="switchTab('treino4')" id="btn-treino4" class="tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation">
                 <span>TREINO D</span>
-                <span class="text-xs opacity-75 font-normal">Metabólico</span>
+                <span class="text-xs opacity-75 font-normal mt-1">Metabólico</span>
             </button>
-        </div>
+        </nav>
 
         <!-- Content Area -->
-        <div class="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden min-h-[500px]">
+        <main class="bg-gray-800 md:rounded-2xl shadow-2xl border-t md:border border-gray-700 overflow-hidden min-h-[500px] -mx-4 md:mx-0">
             
             <!-- TREINO 1 -->
-            <div id="treino1" class="tab-content p-4 md:p-6">
-                <div class="flex items-center justify-between mb-6">
+            <div id="treino1" class="tab-content p-4 md:p-8 space-y-6">
+                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Treino A</h2>
-                        <p class="text-gray-400 text-sm">Foco: Quadríceps e Empurrar</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
+                            Treino A
+                        </h2>
+                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Quadríceps e Empurrar</p>
                     </div>
-                    <div class="flex flex-col items-end">
-                        <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded mb-1">24 Séries</span>
+                    <div class="flex items-center gap-2 ml-4 md:ml-0">
+                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
+                            <i class="fas fa-dumbbell mr-1"></i> 24 Séries
+                        </span>
                     </div>
-                </div>
+                </header>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
-                                <th class="py-3 px-2 w-10">Feito</th>
-                                <th class="py-3 px-2">Exercício</th>
-                                <th class="py-3 px-2 w-24">Séries</th>
-                                <th class="py-3 px-2 w-32">Repetições</th>
-                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-treino1">
-                            <!-- JS will populate -->
-                        </tbody>
-                    </table>
+                <div class="space-y-3" id="list-treino1">
+                    <!-- JS will populate with Cards -->
                 </div>
                 
                 <!-- Cardio Section -->
-                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
-                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
-                        <i class="fas fa-running text-xl"></i>
+                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
+                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
+                        <i class="fas fa-running text-2xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
-                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
+                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
                     </div>
                 </div>
             </div>
 
             <!-- TREINO 2 -->
-            <div id="treino2" class="tab-content hidden p-4 md:p-6">
-                <div class="flex items-center justify-between mb-6">
+            <div id="treino2" class="tab-content hidden p-4 md:p-8 space-y-6">
+                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Treino B</h2>
-                        <p class="text-gray-400 text-sm">Foco: Cadeia Posterior e Puxar</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
+                            Treino B
+                        </h2>
+                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Cadeia Posterior e Puxar</p>
                     </div>
-                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">26 Séries</span>
-                </div>
+                    <div class="flex items-center gap-2 ml-4 md:ml-0">
+                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
+                            <i class="fas fa-dumbbell mr-1"></i> 26 Séries
+                        </span>
+                    </div>
+                </header>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
-                                <th class="py-3 px-2 w-10">Feito</th>
-                                <th class="py-3 px-2">Exercício</th>
-                                <th class="py-3 px-2 w-24">Séries</th>
-                                <th class="py-3 px-2 w-32">Repetições</th>
-                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-treino2">
-                            <!-- JS will populate -->
-                        </tbody>
-                    </table>
+                <div class="space-y-3" id="list-treino2">
+                    <!-- JS will populate -->
                 </div>
 
                 <!-- Cardio Section -->
-                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
-                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
-                        <i class="fas fa-running text-xl"></i>
+                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
+                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
+                        <i class="fas fa-running text-2xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
-                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
+                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
                     </div>
                 </div>
             </div>
 
             <!-- TREINO 3 -->
-            <div id="treino3" class="tab-content hidden p-4 md:p-6">
-                <div class="flex items-center justify-between mb-6">
+            <div id="treino3" class="tab-content hidden p-4 md:p-8 space-y-6">
+                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Treino C</h2>
-                        <p class="text-gray-400 text-sm">Foco: Unilateral e Ombros</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
+                            Treino C
+                        </h2>
+                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Unilateral e Ombros</p>
                     </div>
-                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">25 Séries</span>
-                </div>
+                    <div class="flex items-center gap-2 ml-4 md:ml-0">
+                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
+                            <i class="fas fa-dumbbell mr-1"></i> 25 Séries
+                        </span>
+                    </div>
+                </header>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
-                                <th class="py-3 px-2 w-10">Feito</th>
-                                <th class="py-3 px-2">Exercício</th>
-                                <th class="py-3 px-2 w-24">Séries</th>
-                                <th class="py-3 px-2 w-32">Repetições</th>
-                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-treino3">
-                            <!-- JS will populate -->
-                        </tbody>
-                    </table>
+                <div class="space-y-3" id="list-treino3">
+                    <!-- JS will populate -->
                 </div>
 
                 <!-- Cardio Section -->
-                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
-                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
-                        <i class="fas fa-running text-xl"></i>
+                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
+                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
+                        <i class="fas fa-running text-2xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
-                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
+                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
                     </div>
                 </div>
             </div>
 
             <!-- TREINO 4 -->
-            <div id="treino4" class="tab-content hidden p-4 md:p-6">
-                <div class="flex items-center justify-between mb-6">
+            <div id="treino4" class="tab-content hidden p-4 md:p-8 space-y-6">
+                <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-700 pb-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Treino D</h2>
-                        <p class="text-gray-400 text-sm">Foco: Metabólico e Acabamento</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                            <span class="bg-emerald-500 w-2 h-8 rounded-full inline-block"></span>
+                            Treino D
+                        </h2>
+                        <p class="text-gray-400 text-sm md:text-base mt-1 ml-4">Foco: Metabólico e Acabamento</p>
                     </div>
-                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">23 Séries</span>
-                </div>
+                    <div class="flex items-center gap-2 ml-4 md:ml-0">
+                        <span class="text-xs md:text-sm font-bold text-emerald-400 bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-900/50">
+                            <i class="fas fa-dumbbell mr-1"></i> 23 Séries
+                        </span>
+                    </div>
+                </header>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
-                                <th class="py-3 px-2 w-10">Feito</th>
-                                <th class="py-3 px-2">Exercício</th>
-                                <th class="py-3 px-2 w-24">Séries</th>
-                                <th class="py-3 px-2 w-32">Repetições</th>
-                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-treino4">
-                            <!-- JS will populate -->
-                        </tbody>
-                    </table>
+                <div class="space-y-3" id="list-treino4">
+                    <!-- JS will populate -->
                 </div>
 
                 <!-- Cardio Section -->
-                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
-                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
-                        <i class="fas fa-running text-xl"></i>
+                <div class="mt-8 p-5 rounded-xl cardio-box border border-gray-700/50 flex flex-col md:flex-row items-start md:items-center gap-4 shadow-lg">
+                    <div class="bg-emerald-500/20 p-4 rounded-full text-emerald-400 shrink-0">
+                        <i class="fas fa-running text-2xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
-                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                        <h4 class="font-bold text-white text-lg">Finalização: Cardio</h4>
+                        <p class="text-gray-300 leading-relaxed mt-1">15 min esteira (moderado) <span class="text-emerald-400 font-bold">OU</span> 5 min finais de caminhada rápida/trote.</p>
                     </div>
                 </div>
             </div>
 
-        </div>
+        </main>
 
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-400 text-sm">
             <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
@@ -325,80 +307,132 @@
             ]
         };
 
-        function renderTable(treinoId, data) {
-            const tbody = document.getElementById(`table-${treinoId}`);
-            tbody.innerHTML = '';
+        function renderList(treinoId, data) {
+            const container = document.getElementById(`list-${treinoId}`);
+            container.innerHTML = '';
+            
             data.forEach((exercise, index) => {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-gray-700 hover:bg-gray-700/50 transition-colors group cursor-pointer';
-                row.onclick = function() { toggleCheck(this); };
+                const card = document.createElement('div');
+                card.className = 'bg-gray-700/20 p-4 rounded-xl border border-gray-700/50 hover:bg-gray-700/40 hover:border-emerald-500/30 transition-all group cursor-pointer';
+                card.onclick = function(e) { 
+                    // Prevent toggle if clicking links/buttons inside (future proofing)
+                    if(e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+                        toggleCheck(this); 
+                    }
+                };
                 
-                let setClass = "text-emerald-400 font-bold";
-                
-                row.innerHTML = `
-                    <td class="py-4 px-2">
-                        <div class="w-5 h-5 rounded border-2 border-gray-500 check-circle flex items-center justify-center group-hover:border-emerald-500 transition-all">
-                            <i class="fas fa-check text-xs text-transparent transition-colors"></i>
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        
+                        <!-- Header: Check + Name -->
+                        <div class="flex items-start gap-4 flex-1">
+                            <div class="mt-1 w-6 h-6 rounded-lg border-2 border-gray-600 check-circle flex items-center justify-center group-hover:border-emerald-500 transition-all bg-gray-800 shrink-0">
+                                <i class="fas fa-check text-sm text-transparent transition-colors"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-100 text-lg group-hover:text-emerald-400 transition-colors">${exercise.name}</h3>
+                                <div class="flex flex-wrap gap-2 mt-2 md:hidden">
+                                    <span class="text-xs font-bold text-emerald-400 bg-emerald-900/20 px-2 py-1 rounded border border-emerald-900/30">
+                                        ${exercise.sets} Séries
+                                    </span>
+                                    <span class="text-xs font-medium text-gray-300 bg-gray-700 px-2 py-1 rounded border border-gray-600">
+                                        ${exercise.reps} Reps
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </td>
-                    <td class="py-4 px-2 font-medium text-gray-100">${exercise.name}</td>
-                    <td class="py-4 px-2 ${setClass}">${exercise.sets}</td>
-                    <td class="py-4 px-2 text-gray-300">${exercise.reps}</td>
-                    <td class="py-4 px-2 text-gray-400 text-sm italic hidden md:table-cell">${exercise.note}</td>
+
+                        <!-- Desktop Stats -->
+                        <div class="hidden md:flex items-center gap-8 mr-4">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Séries</p>
+                                <p class="text-emerald-400 font-bold text-lg">${exercise.sets}</p>
+                            </div>
+                            <div class="text-center w-24">
+                                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Reps</p>
+                                <p class="text-gray-200 font-medium">${exercise.reps}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Notes / Instructions -->
+                    <div class="mt-3 pt-3 border-t border-gray-700/50 flex gap-3 text-sm text-gray-400">
+                        <i class="fas fa-lightbulb text-yellow-500/80 mt-1 shrink-0"></i>
+                        <p class="italic leading-relaxed">${exercise.note}</p>
+                    </div>
                 `;
                 
-                // Add mobile note row
-                const noteRow = document.createElement('tr');
-                noteRow.className = 'md:hidden border-b border-gray-700';
-                noteRow.innerHTML = `
-                    <td colspan="4" class="py-2 px-4 text-xs text-gray-500 italic pb-4">
-                        💡 ${exercise.note}
-                    </td>
-                `;
-                
-                tbody.appendChild(row);
-                tbody.appendChild(noteRow);
+                container.appendChild(card);
             });
+
+            // Restore checked state if needed (simple local logic)
+            // For now, checks are reset on reload as per original simplicity
         }
 
         function toggleCheck(row) {
-            row.classList.toggle('row-checked');
-            const icon = row.querySelector('.fa-check');
-            const circle = row.querySelector('.check-circle');
+            const checkCircle = row.querySelector('.check-circle');
+            const checkIcon = row.querySelector('.fa-check');
+            const title = row.querySelector('h3');
             
-            if (row.classList.contains('row-checked')) {
-                icon.classList.remove('text-transparent');
-                icon.classList.add('text-white');
-                circle.classList.remove('border-gray-500', 'group-hover:border-emerald-500');
-                circle.classList.add('bg-emerald-500', 'border-emerald-500');
+            if (row.classList.contains('bg-emerald-900/20')) {
+                // Uncheck
+                row.classList.remove('bg-emerald-900/20', 'border-emerald-500/50');
+                row.classList.add('bg-gray-700/20', 'border-gray-700/50');
+                
+                checkCircle.classList.remove('bg-emerald-500', 'border-emerald-500');
+                checkCircle.classList.add('bg-gray-800', 'border-gray-600');
+                
+                checkIcon.classList.remove('text-white');
+                checkIcon.classList.add('text-transparent');
+                
+                title.classList.remove('text-emerald-400', 'line-through', 'opacity-50');
+                title.classList.add('text-gray-100');
             } else {
-                icon.classList.add('text-transparent');
-                icon.classList.remove('text-white');
-                circle.classList.add('border-gray-500', 'group-hover:border-emerald-500');
-                circle.classList.remove('bg-emerald-500', 'border-emerald-500');
+                // Check
+                row.classList.remove('bg-gray-700/20', 'border-gray-700/50');
+                row.classList.add('bg-emerald-900/20', 'border-emerald-500/50');
+                
+                checkCircle.classList.remove('bg-gray-800', 'border-gray-600');
+                checkCircle.classList.add('bg-emerald-500', 'border-emerald-500');
+                
+                checkIcon.classList.remove('text-transparent');
+                checkIcon.classList.add('text-white');
+                
+                title.classList.remove('text-gray-100');
+                title.classList.add('text-emerald-400', 'line-through', 'opacity-50');
             }
         }
 
-        function switchTab(treinoId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(treinoId).classList.remove('hidden');
-            
-            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
-                if(btn.id === `btn-${treinoId}`) {
-                    btn.classList.remove('tab-inactive');
-                    btn.classList.add('tab-active');
-                } else {
-                    btn.classList.remove('tab-active');
-                    btn.classList.add('tab-inactive');
-                }
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
             });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
+                btn.className = 'tab-inactive py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation';
+            });
+            
+            // Show selected content
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Activate button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.className = 'tab-active py-4 px-2 rounded-xl font-bold text-sm md:text-base border transition-all flex flex-col items-center justify-center shadow-lg active:scale-95 touch-manipulation';
+            
+            // Render list if empty
+            const listContainer = document.getElementById(`list-${tabId}`);
+            if (listContainer && listContainer.children.length === 0) {
+                renderList(tabId, workouts[tabId]);
+            }
         }
 
-        // Initialize
-        renderTable('treino1', workouts.treino1);
-        renderTable('treino2', workouts.treino2);
-        renderTable('treino3', workouts.treino3);
-        renderTable('treino4', workouts.treino4);
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderList('treino1', workouts.treino1);
+        });
 
     </script>
 </body>
