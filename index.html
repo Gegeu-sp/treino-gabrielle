@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino Fullbody - Gabrielle Mantovani</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { 
+            background-color: #10B981; 
+            color: white; 
+            border-color: #10B981;
+        }
+        .tab-inactive { 
+            background-color: #1F2937; 
+            color: #9CA3AF; 
+            border-color: #374151;
+        }
+        .tab-inactive:hover {
+            background-color: #374151;
+            color: white;
+        }
+        .check-circle {
+            transition: all 0.2s ease;
+        }
+        .row-checked .text-gray-100 {
+            text-decoration: line-through;
+            color: #6B7280;
+        }
+        .row-checked .text-emerald-400 {
+            color: #059669;
+        }
+        .cardio-box {
+            background: linear-gradient(45deg, #1F2937, #111827);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        
+        <!-- Header -->
+        <header class="mb-8 border-b border-gray-700 pb-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-1">
+                        Planejamento de Treino
+                    </h1>
+                    <h2 class="text-xl text-emerald-400 font-semibold">Aluna: Gabrielle Mantovani</h2>
+                    <p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">
+                        Objetivo: Hipertrofia & Força | Nível: Intermediário
+                    </p>
+                </div>
+                
+                <div class="text-left md:text-right bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-xs text-gray-500 uppercase font-bold">Personal Trainer</p>
+                    <p class="text-white font-bold text-lg">Argeu Rodrigues</p>
+                    <p class="text-emerald-500 text-sm font-mono">CREF: 158814-G/SP</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
+            <button onclick="switchTab('treino1')" id="btn-treino1" class="tab-active py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+                <span>TREINO A</span>
+                <span class="text-xs opacity-75 font-normal">Base: Agachamento</span>
+            </button>
+            <button onclick="switchTab('treino2')" id="btn-treino2" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+                <span>TREINO B</span>
+                <span class="text-xs opacity-75 font-normal">Base: Terra</span>
+            </button>
+            <button onclick="switchTab('treino3')" id="btn-treino3" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+                <span>TREINO C</span>
+                <span class="text-xs opacity-75 font-normal">Base: Unilateral</span>
+            </button>
+            <button onclick="switchTab('treino4')" id="btn-treino4" class="tab-inactive py-3 px-4 rounded-lg font-semibold text-sm md:text-base border transition-all flex flex-col items-center justify-center">
+                <span>TREINO D</span>
+                <span class="text-xs opacity-75 font-normal">Metabólico</span>
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden min-h-[500px]">
+            
+            <!-- TREINO 1 -->
+            <div id="treino1" class="tab-content p-4 md:p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Treino A</h2>
+                        <p class="text-gray-400 text-sm">Foco: Quadríceps e Empurrar</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded mb-1">24 Séries</span>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
+                                <th class="py-3 px-2 w-10">Feito</th>
+                                <th class="py-3 px-2">Exercício</th>
+                                <th class="py-3 px-2 w-24">Séries</th>
+                                <th class="py-3 px-2 w-32">Repetições</th>
+                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-treino1">
+                            <!-- JS will populate -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Cardio Section -->
+                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
+                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
+                        <i class="fas fa-running text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
+                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TREINO 2 -->
+            <div id="treino2" class="tab-content hidden p-4 md:p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Treino B</h2>
+                        <p class="text-gray-400 text-sm">Foco: Cadeia Posterior e Puxar</p>
+                    </div>
+                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">26 Séries</span>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
+                                <th class="py-3 px-2 w-10">Feito</th>
+                                <th class="py-3 px-2">Exercício</th>
+                                <th class="py-3 px-2 w-24">Séries</th>
+                                <th class="py-3 px-2 w-32">Repetições</th>
+                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-treino2">
+                            <!-- JS will populate -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cardio Section -->
+                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
+                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
+                        <i class="fas fa-running text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
+                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TREINO 3 -->
+            <div id="treino3" class="tab-content hidden p-4 md:p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Treino C</h2>
+                        <p class="text-gray-400 text-sm">Foco: Unilateral e Ombros</p>
+                    </div>
+                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">25 Séries</span>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
+                                <th class="py-3 px-2 w-10">Feito</th>
+                                <th class="py-3 px-2">Exercício</th>
+                                <th class="py-3 px-2 w-24">Séries</th>
+                                <th class="py-3 px-2 w-32">Repetições</th>
+                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-treino3">
+                            <!-- JS will populate -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cardio Section -->
+                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
+                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
+                        <i class="fas fa-running text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
+                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TREINO 4 -->
+            <div id="treino4" class="tab-content hidden p-4 md:p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Treino D</h2>
+                        <p class="text-gray-400 text-sm">Foco: Metabólico e Acabamento</p>
+                    </div>
+                    <span class="text-sm text-emerald-400 font-mono bg-emerald-900/30 px-3 py-1 rounded">23 Séries</span>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-sm uppercase border-b border-gray-700">
+                                <th class="py-3 px-2 w-10">Feito</th>
+                                <th class="py-3 px-2">Exercício</th>
+                                <th class="py-3 px-2 w-24">Séries</th>
+                                <th class="py-3 px-2 w-32">Repetições</th>
+                                <th class="py-3 px-2 hidden md:table-cell">Instruções Técnicas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-treino4">
+                            <!-- JS will populate -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cardio Section -->
+                <div class="mt-6 p-4 rounded-lg cardio-box border border-gray-700 flex items-center gap-4">
+                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400">
+                        <i class="fas fa-running text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Finalização: Cardio</h4>
+                        <p class="text-sm text-gray-300">15 min esteira (moderado) OU 5 min finais de caminhada rápida/trote.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-400 text-sm">
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                <h3 class="text-white font-bold mb-2"><i class="fas fa-layer-group text-blue-400"></i> Metodologia dos Blocos</h3>
+                <p class="mb-2">Este treino utiliza a estratégia de <strong>Agrupamento Segmentado</strong>:</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Realizamos <strong>2 exercícios do mesmo segmento</strong> (ex: 2 de perna) seguidos, antes de mudar para o próximo grupo.</li>
+                    <li>Isso aumenta o fluxo sanguíneo local ("Pump") e a densidade do trabalho muscular.</li>
+                    <li>Músculos menores (bíceps, tríceps) e abdômen são trabalhados sempre ao final, para não prejudicar a força nos exercícios grandes.</li>
+                </ul>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                <h3 class="text-white font-bold mb-2"><i class="fas fa-calendar-check text-blue-400"></i> Agenda Sugerida</h3>
+                <div class="grid grid-cols-7 gap-1 text-center mt-2 font-mono text-xs">
+                    <div class="bg-gray-700 p-1 rounded">SEG<br><span class="text-emerald-400 font-bold">A</span></div>
+                    <div class="bg-gray-700 p-1 rounded">TER<br><span class="text-emerald-400 font-bold">B</span></div>
+                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">QUA<br>OFF</div>
+                    <div class="bg-gray-700 p-1 rounded">QUI<br><span class="text-emerald-400 font-bold">C</span></div>
+                    <div class="bg-gray-700 p-1 rounded">SEX<br><span class="text-emerald-400 font-bold">D</span></div>
+                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">SÁB<br>OFF</div>
+                    <div class="bg-gray-900 p-1 rounded text-gray-600 border border-gray-800">DOM<br>OFF</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const workouts = {
+            treino1: [
+                // BLOCO 1: PERNAS
+                { name: "Agachamento Livre", sets: "4", reps: "6 a 8", note: "Pés largura ombros. Amplitude máxima com controle." },
+                { name: "Elevação de Quadril (Barra)", sets: "4", reps: "10 a 12", note: "Contraia glúteo por 2s no topo. Carga alta." },
+                // BLOCO 2: SUPERIOR
+                { name: "Supino Inclinado (Halteres)", sets: "3", reps: "10 a 12", note: "Banco 30-45º. Alongue bem na descida." },
+                { name: "Desenvolvimento (Halteres)", sets: "3", reps: "10 a 12", note: "Tronco firme. Sem impulso." },
+                // ACESSÓRIOS
+                { name: "Cadeira Extensora", sets: "4", reps: "15 a 20", note: "Pico de contração de 2s a cada repetição." },
+                // FINALIZAÇÃO (PEQUENOS)
+                { name: "Tríceps Testa ou Polia", sets: "3", reps: "12", note: "Cotovelos fechados." },
+                { name: "Abdominal Infra", sets: "3", reps: "15", note: "Eleve o quadril do chão." }
+            ],
+            treino2: [
+                // BLOCO 1: PERNAS POSTERIOR
+                { name: "Levantamento Terra", sets: "4", reps: "5 a 8", note: "Barra colada na canela. Coluna neutra." },
+                { name: "Leg Press 45º", sets: "4", reps: "10 a 15", note: "Pés mais baixos (foco quadríceps) sem tirar calcanhar." },
+                // BLOCO 2: SUPERIOR PUXAR
+                { name: "Puxada Triângulo", sets: "4", reps: "10 a 12", note: "Traga o triângulo no peito superior." },
+                { name: "Remada Curvada", sets: "4", reps: "10 a 12", note: "Pegada pronada. Tronco estável." },
+                // ACESSÓRIOS
+                { name: "Cadeira Flexora", sets: "4", reps: "12 a 15", note: "Quadril fixo no banco." },
+                // FINALIZAÇÃO (PEQUENOS)
+                { name: "Panturrilha Sentado", sets: "3", reps: "15 a 20", note: "Amplitude máxima." },
+                { name: "Rosca Direta", sets: "3", reps: "12", note: "Sem balanço. Foco total no bíceps." }
+            ],
+            treino3: [
+                // BLOCO 1: UNILATERAL/PERNA
+                { name: "Agachamento Búlgaro", sets: "4", reps: "10 a 12", note: "Tronco levemente à frente. Controle a descida." },
+                { name: "Stiff com Halteres", sets: "4", reps: "10 a 12", note: "Alongamento máximo do posterior." },
+                // BLOCO 2: SUPERIOR
+                { name: "Elevação Lateral", sets: "3", reps: "12 + 15", note: "Drop-set na última série." },
+                { name: "Pulldown Corda", sets: "3", reps: "12 a 15", note: "Braços estendidos. Foco na dorsal e tríceps longo." },
+                // ACESSÓRIOS
+                { name: "Elevação Pélvica (Máq/Barra)", sets: "4", reps: "12 a 15", note: "Foco metabólico (mais repetições)." },
+                // FINALIZAÇÃO (PEQUENOS)
+                { name: "Tríceps Corda", sets: "3", reps: "12", note: "Abra a corda no final do movimento." }
+            ],
+            treino4: [
+                // BLOCO 1: PERNAS
+                { name: "Agachamento Livre", sets: "4", reps: "10 a 12", note: "Carga moderada, foco na técnica." },
+                { name: "Abdução de Quadril", sets: "4", reps: "15 a 20", note: "Tronco inclinado à frente. Segure 2s." },
+                // ACESSÓRIOS PERNA
+                { name: "Cadeira Extensora", sets: "3", reps: "15+", note: "Falha concêntrica." },
+                { name: "Cadeira Flexora", sets: "3", reps: "15+", note: "Movimento contínuo." },
+                // FINALIZAÇÃO (PEQUENOS)
+                { name: "Rosca Martelo", sets: "3", reps: "12", note: "Pegada neutra." },
+                { name: "Prancha Ventral", sets: "3", reps: "30-45s", note: "Corpo em linha reta. Abdômen travado." }
+            ]
+        };
+
+        function renderTable(treinoId, data) {
+            const tbody = document.getElementById(`table-${treinoId}`);
+            tbody.innerHTML = '';
+            data.forEach((exercise, index) => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-700 hover:bg-gray-700/50 transition-colors group cursor-pointer';
+                row.onclick = function() { toggleCheck(this); };
+                
+                let setClass = "text-emerald-400 font-bold";
+                
+                row.innerHTML = `
+                    <td class="py-4 px-2">
+                        <div class="w-5 h-5 rounded border-2 border-gray-500 check-circle flex items-center justify-center group-hover:border-emerald-500 transition-all">
+                            <i class="fas fa-check text-xs text-transparent transition-colors"></i>
+                        </div>
+                    </td>
+                    <td class="py-4 px-2 font-medium text-gray-100">${exercise.name}</td>
+                    <td class="py-4 px-2 ${setClass}">${exercise.sets}</td>
+                    <td class="py-4 px-2 text-gray-300">${exercise.reps}</td>
+                    <td class="py-4 px-2 text-gray-400 text-sm italic hidden md:table-cell">${exercise.note}</td>
+                `;
+                
+                // Add mobile note row
+                const noteRow = document.createElement('tr');
+                noteRow.className = 'md:hidden border-b border-gray-700';
+                noteRow.innerHTML = `
+                    <td colspan="4" class="py-2 px-4 text-xs text-gray-500 italic pb-4">
+                        💡 ${exercise.note}
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+                tbody.appendChild(noteRow);
+            });
+        }
+
+        function toggleCheck(row) {
+            row.classList.toggle('row-checked');
+            const icon = row.querySelector('.fa-check');
+            const circle = row.querySelector('.check-circle');
+            
+            if (row.classList.contains('row-checked')) {
+                icon.classList.remove('text-transparent');
+                icon.classList.add('text-white');
+                circle.classList.remove('border-gray-500', 'group-hover:border-emerald-500');
+                circle.classList.add('bg-emerald-500', 'border-emerald-500');
+            } else {
+                icon.classList.add('text-transparent');
+                icon.classList.remove('text-white');
+                circle.classList.add('border-gray-500', 'group-hover:border-emerald-500');
+                circle.classList.remove('bg-emerald-500', 'border-emerald-500');
+            }
+        }
+
+        function switchTab(treinoId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(treinoId).classList.remove('hidden');
+            
+            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
+                if(btn.id === `btn-${treinoId}`) {
+                    btn.classList.remove('tab-inactive');
+                    btn.classList.add('tab-active');
+                } else {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                }
+            });
+        }
+
+        // Initialize
+        renderTable('treino1', workouts.treino1);
+        renderTable('treino2', workouts.treino2);
+        renderTable('treino3', workouts.treino3);
+        renderTable('treino4', workouts.treino4);
+
+    </script>
+</body>
+</html>
