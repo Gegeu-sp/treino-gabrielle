@@ -1,6 +1,6 @@
 # 🏋️‍♀️ Web App de Treinos Personalizados
 
-> **Aula:** Gabrielle Mantovani  
+> **Aluna:** Gabrielle Mantovani  
 > **Mentoria:** Argeu Rodrigues  
 > **Status:** Concluído ✅
 

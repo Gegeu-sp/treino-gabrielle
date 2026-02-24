@@ -62,6 +62,7 @@
 
         .gradient-text {
             background: linear-gradient(to right, #e11d48, #db2777);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -141,6 +142,10 @@
 
             <!-- Workout Selector (Horizontal Scroll) -->
             <h3 class="text-lg font-bold text-slate-700 mb-4 px-2">Seus Treinos</h3>
+            <div class="bg-white rounded-3xl p-4 mb-4 border border-rose-100">
+                <h3 class="text-sm font-bold text-slate-700 mb-3 px-2">Selecione o Mês</h3>
+                <div id="month-selector" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
+            </div>
             <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 mb-2">
                 <button onclick="switchTab('treino1')" id="btn-treino1" class="flex-shrink-0 w-28 h-32 rounded-3xl p-4 flex flex-col justify-between transition-all duration-300 shadow-md bg-gradient-to-br from-rose-500 to-pink-600 text-white transform scale-105">
                     <span class="text-2xl opacity-80">A</span>
@@ -181,7 +186,14 @@
                             <h3 class="text-2xl font-bold text-slate-800">Treino A</h3>
                             <p class="text-rose-400 text-sm">Quadríceps & Empurrar</p>
                         </div>
-                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">24 Séries</span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">24 Séries</span>
+                            <button onclick="toggleEdit('treino1')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-rose-200 text-rose-600 hover:bg-rose-50">Editar</button>
+                            <div id="edit-controls-treino1" class="hidden flex items-center gap-2">
+                                <button onclick="addExercise('treino1')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50">Adicionar</button>
+                                <button onclick="saveEdits('treino1')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-emerald-300 text-emerald-600 hover:bg-emerald-50">Salvar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-4" id="list-treino1"></div>
                 </div>
@@ -193,7 +205,14 @@
                             <h3 class="text-2xl font-bold text-slate-800">Treino B</h3>
                             <p class="text-rose-400 text-sm">Posterior & Puxar</p>
                         </div>
-                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">26 Séries</span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">26 Séries</span>
+                            <button onclick="toggleEdit('treino2')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-rose-200 text-rose-600 hover:bg-rose-50">Editar</button>
+                            <div id="edit-controls-treino2" class="hidden flex items-center gap-2">
+                                <button onclick="addExercise('treino2')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50">Adicionar</button>
+                                <button onclick="saveEdits('treino2')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-emerald-300 text-emerald-600 hover:bg-emerald-50">Salvar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-4" id="list-treino2"></div>
                 </div>
@@ -205,7 +224,14 @@
                             <h3 class="text-2xl font-bold text-slate-800">Treino C</h3>
                             <p class="text-rose-400 text-sm">Glúteo & Ombros</p>
                         </div>
-                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">25 Séries</span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">25 Séries</span>
+                            <button onclick="toggleEdit('treino3')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-rose-200 text-rose-600 hover:bg-rose-50">Editar</button>
+                            <div id="edit-controls-treino3" class="hidden flex items-center gap-2">
+                                <button onclick="addExercise('treino3')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50">Adicionar</button>
+                                <button onclick="saveEdits('treino3')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-emerald-300 text-emerald-600 hover:bg-emerald-50">Salvar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-4" id="list-treino3"></div>
                 </div>
@@ -217,7 +243,14 @@
                             <h3 class="text-2xl font-bold text-slate-800">Treino D</h3>
                             <p class="text-rose-400 text-sm">Metabólico & Acabamento</p>
                         </div>
-                        <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">23 Séries</span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1 rounded-full">23 Séries</span>
+                            <button onclick="toggleEdit('treino4')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-rose-200 text-rose-600 hover:bg-rose-50">Editar</button>
+                            <div id="edit-controls-treino4" class="hidden flex items-center gap-2">
+                                <button onclick="addExercise('treino4')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50">Adicionar</button>
+                                <button onclick="saveEdits('treino4')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-emerald-300 text-emerald-600 hover:bg-emerald-50">Salvar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-4" id="list-treino4"></div>
                 </div>
@@ -274,6 +307,21 @@
             <button onclick="confirmReset()" class="text-xs text-rose-300 underline w-full text-center pb-8">Resetar todos os dados</button>
         </section>
 
+        <!-- View: ADMIN (Hidden by default) -->
+        <section id="view-admin" class="view-section hidden">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6 px-2">Área Administrativa</h2>
+            <div class="bg-white rounded-3xl p-6 card-shadow mb-6">
+                <h3 class="font-bold text-slate-700 mb-2">Controle de Meses</h3>
+                <p class="text-xs text-slate-400 mb-4">Libere ou bloqueie o acesso aos treinos de cada mês.</p>
+                <div id="admin-months" class="space-y-2"></div>
+            </div>
+            <div class="bg-white rounded-3xl p-6 card-shadow mb-10">
+                <h3 class="font-bold text-slate-700 mb-2">Logs do Sistema</h3>
+                <p class="text-xs text-slate-400 mb-4">Histórico de alterações, liberações e check-ins.</p>
+                <div id="admin-logs" class="max-h-64 overflow-y-auto text-xs text-slate-600 space-y-2"></div>
+            </div>
+        </section>
+
         <!-- Trainer Footer Info -->
         <div class="mt-8 mb-8 text-center border-t border-rose-200/50 pt-8 pb-4 opacity-80">
             <p class="text-[10px] text-slate-400 uppercase tracking-widest mb-2">Treinamento Prescrito por</p>
@@ -296,6 +344,11 @@
             <button onclick="switchView('stats')" id="nav-stats" class="flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400">
                 <i class="fas fa-chart-pie text-xl"></i>
                 <span class="text-[10px] font-bold">Progresso</span>
+            </button>
+
+            <button onclick="switchView('admin')" id="nav-admin" class="flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400">
+                <i class="fas fa-user-shield text-xl"></i>
+                <span class="text-[10px] font-bold">Admin</span>
             </button>
         </div>
     </nav>
@@ -1003,21 +1056,190 @@
             ]
         };
 
+        const monthsPT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+        function formatMonthId(year, monthIndex) { return `${year}-${String(monthIndex+1).padStart(2,'0')}`; }
+        function getCurrentMonthId() { const d = new Date(); return formatMonthId(d.getFullYear(), d.getMonth()); }
+        function loadJson(key, fallback) {
+            const raw = localStorage.getItem(key);
+            if (!raw) return fallback;
+            try { return JSON.parse(raw); } catch(e) { return fallback; }
+        }
+        function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+        let currentMonthId = getCurrentMonthId();
+        let monthlyPlans = loadJson('gabrielle_monthly_plans', {});
+        let trainingData = loadJson('gabrielle_training_data', {});
+        let monthAccess = loadJson('gabrielle_month_access', {});
+        let planVersions = loadJson('gabrielle_plan_versions', {});
+        let trainingLogs = loadJson('gabrielle_logs', []);
+        let exerciseChecks = loadJson('gabrielle_exercise_checks', {});
+        let isAdmin = localStorage.getItem('gabrielle_is_admin') === 'true';
+        let lastMonthIdStored = localStorage.getItem('gabrielle_last_month_id') || currentMonthId;
+        function addLog(type, details) {
+            trainingLogs.push({ type, details, timestamp: Date.now() });
+            localStorage.setItem('gabrielle_logs', JSON.stringify(trainingLogs));
+        }
+        function isMonthBlocked(monthId) {
+            const parts = monthId.split('-');
+            const m = parseInt(parts[1], 10) - 1;
+            if (m < 3 || m > 11) return false;
+            return !monthAccess[monthId];
+        }
+        function transformPlanForMonth(monthId, baseMonthId, plan) {
+            if (monthId === baseMonthId) return;
+            const parts = monthId.split('-');
+            const m = parseInt(parts[1], 10) - 1;
+            Object.keys(plan).forEach(key => {
+                const list = plan[key];
+                if (!Array.isArray(list) || list.length === 0) return;
+                const shift = (m % list.length) || 1;
+                const rotated = list.slice(shift).concat(list.slice(0, shift));
+                plan[key] = rotated;
+            });
+        }
+        function ensureMonthPlan(monthId) {
+            if (monthlyPlans[monthId]) return false;
+            const now = new Date();
+            const baseId = formatMonthId(now.getFullYear(), now.getMonth());
+            if (!monthlyPlans[baseId]) monthlyPlans[baseId] = deepClone(workouts);
+            let chosenBase = baseId;
+            const parts = monthId.split('-');
+            const y = parseInt(parts[0], 10);
+            const m = parseInt(parts[1], 10) - 1;
+            for (let i = m - 1; i >= 0; i--) {
+                const id = formatMonthId(y, i);
+                if (monthlyPlans[id]) { chosenBase = id; break; }
+            }
+            const basePlan = monthlyPlans[chosenBase] || deepClone(workouts);
+            const cloned = deepClone(basePlan);
+            transformPlanForMonth(monthId, chosenBase, cloned);
+            monthlyPlans[monthId] = cloned;
+            planVersions[monthId] = {
+                version: (planVersions[monthId] && planVersions[monthId].version ? planVersions[monthId].version + 1 : 1),
+                baseMonthId: chosenBase,
+                createdAt: Date.now()
+            };
+            localStorage.setItem('gabrielle_monthly_plans', JSON.stringify(monthlyPlans));
+            localStorage.setItem('gabrielle_plan_versions', JSON.stringify(planVersions));
+            addLog('GENERATE_PLAN', { monthId: monthId, baseMonthId: chosenBase });
+            return true;
+        }
+        function isFutureMonth(monthId) { return monthId > getCurrentMonthId(); }
+        function renderMonthSelector() {
+            const container = document.getElementById('month-selector');
+            if (!container) return;
+            const now = new Date();
+            const year = now.getFullYear();
+            let html = '<div class=\"flex gap-2 overflow-x-auto no-scrollbar w-full\">';
+            for (let i = 0; i < 12; i++) {
+                const id = formatMonthId(year, i);
+                const hasPlan = !!monthlyPlans[id];
+                const isActive = id === currentMonthId;
+                const blocked = isMonthBlocked(id);
+                const classes = isActive 
+                    ? 'flex-shrink-0 px-3 h-9 rounded-2xl border text-xs font-bold bg-gradient-to-br from-rose-500 to-pink-600 text-white border-rose-400 shadow-md'
+                    : blocked
+                    ? 'flex-shrink-0 px-3 h-9 rounded-2xl border text-xs font-bold bg-white border-rose-100 text-slate-300'
+                    : hasPlan 
+                    ? 'flex-shrink-0 px-3 h-9 rounded-2xl border text-xs font-bold bg-white border-rose-100 text-slate-600'
+                    : 'flex-shrink-0 px-3 h-9 rounded-2xl border text-xs font-bold bg-white border-slate-200 text-slate-400';
+                const badge = blocked ? 'Bloq' : hasPlan ? 'Treino' : 'Auto';
+                const badgeColor = isActive ? 'text-white/80' : blocked ? 'text-rose-400' : hasPlan ? 'text-rose-500' : 'text-slate-300';
+                html += `<button class=\"${classes}\" onclick=\"switchMonth('${id}')\">${monthsPT[i]} <span class=\"ml-2 text-[10px] font-bold ${badgeColor}\">${badge}</span></button>`;
+            }
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        function setCurrentMonth(monthId) {
+            ensureMonthPlan(monthId);
+            currentMonthId = monthId;
+            renderMonthSelector();
+            renderList(currentTab, monthlyPlans[currentMonthId][currentTab]);
+        }
+        function switchMonth(monthId) {
+            if (!isAdmin && isMonthBlocked(monthId)) {
+                alert('Este mês está bloqueado. Peça ao administrador para liberar.');
+                addLog('ACCESS_DENIED', { monthId: monthId });
+                return;
+            }
+            const parts = monthId.split('-');
+            const m = parseInt(parts[1], 10) - 1;
+            if (m >= 3) { blockSubsequentMonths(); }
+            const slug = monthIdToSlug(monthId);
+            loadWorkoutsFromMarkdown(slug, monthId).then(ok => {
+                if (!ok && !monthlyPlans[monthId]) ensureMonthPlan(monthId);
+                setCurrentMonth(monthId);
+            });
+        }
+
         let currentTab = 'treino1';
         let userHistory = JSON.parse(localStorage.getItem('gabrielle_history')) || [];
-        // Migration check: ensure structure
         if(!Array.isArray(userHistory)) userHistory = [];
 
         // --- CORE FUNCTIONS ---
 
         function init() {
-            renderList('treino1', workouts.treino1);
+            if (lastMonthIdStored !== currentMonthId) {
+                addLog('MONTH_ROLLOVER', { from: lastMonthIdStored, to: currentMonthId });
+                localStorage.setItem('gabrielle_last_month_id', currentMonthId);
+            }
+            window.addEventListener('error', (e) => {
+                try {
+                    addLog('GLOBAL_ERROR', { message: e.message, source: e.filename, line: e.lineno, col: e.colno });
+                } catch (_) {}
+            });
+            checkResources();
+            blockSubsequentMonths();
+            ensureMonthPlan(currentMonthId);
+            const parts = currentMonthId.split('-');
+            const m = parseInt(parts[1], 10) - 1;
+            if (!monthlyPlans[currentMonthId]) {
+                const slugInit = monthIdToSlug(currentMonthId);
+                loadWorkoutsFromMarkdown(slugInit, currentMonthId).then(() => {
+                    renderMonthSelector();
+                    renderList('treino1', monthlyPlans[currentMonthId].treino1);
+                    updateStatsUI();
+                    document.getElementById('current-month-label').innerText = monthsPT[new Date().getMonth()];
+                });
+                return;
+            }
+            renderMonthSelector();
+            renderList('treino1', monthlyPlans[currentMonthId].treino1);
             updateStatsUI();
-            
-            // Set current month label
+            document.getElementById('current-month-label').innerText = monthsPT[new Date().getMonth()];
+        }
+        function blockSubsequentMonths() {
             const now = new Date();
-            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-            document.getElementById('current-month-label').innerText = months[now.getMonth()];
+            const year = now.getFullYear();
+            for (let i = 3; i < 12; i++) {
+                const id = formatMonthId(year, i);
+                delete monthAccess[id];
+            }
+            localStorage.setItem('gabrielle_month_access', JSON.stringify(monthAccess));
+            addLog('AUTO_BLOCK_AFTER_MARCH', { blockedFrom: 'Abril', to: 'Dezembro' });
+        }
+        function checkResources() {
+            const deps = [
+                { name: 'Tailwind', ok: !!window.tailwind },
+                { name: 'FontAwesome', ok: !!document.querySelector('link[href*=\"font-awesome\"]') },
+                { name: 'Chart.js', ok: typeof Chart !== 'undefined' },
+                { name: 'Confetti', ok: typeof confetti === 'function' }
+            ];
+            deps.forEach(d => addLog('RESOURCE_CHECK', { lib: d.name, available: d.ok }));
+        }
+
+        function getExerciseLoad(monthId, treinoId, index) {
+            if (!trainingData[monthId]) return '';
+            if (!trainingData[monthId][treinoId]) return '';
+            if (!trainingData[monthId][treinoId][index]) return '';
+            return trainingData[monthId][treinoId][index].load || '';
+        }
+
+        function updateExerciseLoad(treinoId, index, value) {
+            if (!trainingData[currentMonthId]) trainingData[currentMonthId] = {};
+            if (!trainingData[currentMonthId][treinoId]) trainingData[currentMonthId][treinoId] = {};
+            trainingData[currentMonthId][treinoId][index] = { load: value, updatedAt: Date.now() };
+            localStorage.setItem('gabrielle_training_data', JSON.stringify(trainingData));
+            addLog('SET_LOAD', { monthId: currentMonthId, workoutId: treinoId, exerciseIndex: index, load: value });
         }
 
         function renderList(treinoId, data) {
@@ -1025,24 +1247,27 @@
             if(!container) return;
             
             container.innerHTML = '';
+            if (!Array.isArray(data)) data = [];
             
+            const editing = editMode.active && editMode.treinoId === treinoId;
             data.forEach((exercise, index) => {
+                const savedLoad = getExerciseLoad(currentMonthId, treinoId, index);
                 const card = document.createElement('div');
                 card.className = 'bg-white p-5 rounded-2xl border border-rose-50 shadow-sm flex items-start gap-4 cursor-pointer transition-all active:scale-[0.98] select-none group';
                 card.onclick = function(e) { 
-                    if(!e.target.closest('.details-btn')) {
+                    if(!e.target.closest('.details-btn') && !editing) {
                         toggleCheck(this); 
                     }
                 };
                 
                 // Details Button HTML (only if details exist)
-                const detailsBtn = exercise.details ? `
+                const detailsBtn = (!editing && exercise.details) ? `
                     <button onclick="openExerciseModal('${treinoId}', ${index})" class="details-btn mt-3 w-full py-2 bg-rose-50 text-rose-500 text-xs font-bold rounded-xl border border-rose-100 hover:bg-rose-100 transition-colors flex items-center justify-center gap-2">
                         <i class="fas fa-eye"></i> Ver Instruções Detalhadas
                     </button>
                 ` : '';
 
-                card.innerHTML = `
+                const normalContent = `
                     <div class="mt-1 w-6 h-6 rounded-full border-2 border-slate-200 check-circle flex items-center justify-center shrink-0 bg-slate-50">
                         <i class="fas fa-check text-[10px] text-transparent transition-colors"></i>
                     </div>
@@ -1053,14 +1278,83 @@
                         <div class="flex gap-2 mt-2">
                             <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded-lg border border-rose-100">${exercise.sets} x ${exercise.reps}</span>
                         </div>
+                        <div class="mt-2">
+                            <label class="block text-[10px] text-slate-400 uppercase tracking-wide mb-1">Carga (kg)</label>
+                            <input type="number" class="w-24 text-xs px-2 py-1 rounded-lg border border-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-300" value="${savedLoad}" placeholder="Ex: 30" oninput="updateExerciseLoad('${treinoId}', ${index}, this.value)" />
+                        </div>
                         <p class="text-xs text-slate-400 mt-2 italic flex items-center gap-1">
                             <i class="fas fa-info-circle text-rose-300"></i> ${exercise.note}
                         </p>
                         ${detailsBtn}
                     </div>
                 `;
+                const editContent = `
+                    <div class="mt-1 w-6 h-6 rounded-full border-2 border-rose-200 bg-rose-50 flex items-center justify-center shrink-0">
+                        <i class="fas fa-pen text-[10px] text-rose-400"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="grid grid-cols-1 gap-2">
+                            <input type="text" value="${exercise.name}" class="text-sm px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-300" oninput="updateExerciseField('${treinoId}', ${index}, 'name', this.value)" />
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 uppercase tracking-wide mb-1">Séries</label>
+                                    <input type="text" value="${exercise.sets}" class="w-20 text-xs px-2 py-1 rounded-lg border border-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-300" oninput="updateExerciseField('${treinoId}', ${index}, 'sets', this.value)" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-400 uppercase tracking-wide mb-1">Repetições</label>
+                                    <input type="text" value="${exercise.reps}" class="w-28 text-xs px-2 py-1 rounded-lg border border-slate-200 focus:outline-none focus:ring-1 focus:ring-rose-300" oninput="updateExerciseField('${treinoId}', ${index}, 'reps', this.value)" />
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button onclick="removeExercise('${treinoId}', ${index})" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-rose-300 text-rose-600 hover:bg-rose-50">Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                card.innerHTML = editing ? editContent : normalContent;
                 container.appendChild(card);
             });
+        }
+        let editMode = { active: false, treinoId: null };
+        function toggleEdit(treinoId) {
+            if (editMode.active && editMode.treinoId === treinoId) {
+                editMode = { active: false, treinoId: null };
+            } else {
+                editMode = { active: true, treinoId };
+            }
+            updateEditControls();
+            renderList(treinoId, monthlyPlans[currentMonthId][treinoId]);
+        }
+        function updateEditControls() {
+            ['treino1','treino2','treino3','treino4'].forEach(t => {
+                const el = document.getElementById(`edit-controls-${t}`);
+                if (!el) return;
+                if (editMode.active && editMode.treinoId === t) { el.classList.remove('hidden'); }
+                else { el.classList.add('hidden'); }
+            });
+        }
+        function updateExerciseField(treinoId, index, field, value) {
+            const arr = monthlyPlans[currentMonthId][treinoId];
+            if (!arr || !arr[index]) return;
+            arr[index][field] = value;
+        }
+        function addExercise(treinoId) {
+            if (!monthlyPlans[currentMonthId][treinoId]) monthlyPlans[currentMonthId][treinoId] = [];
+            monthlyPlans[currentMonthId][treinoId].push({ name: 'Novo Exercício', sets: '3', reps: '10-12', note: '' });
+            renderList(treinoId, monthlyPlans[currentMonthId][treinoId]);
+        }
+        function removeExercise(treinoId, index) {
+            const arr = monthlyPlans[currentMonthId][treinoId];
+            if (!arr) return;
+            arr.splice(index, 1);
+            renderList(treinoId, arr);
+        }
+        function saveEdits(treinoId) {
+            localStorage.setItem('gabrielle_monthly_plans', JSON.stringify(monthlyPlans));
+            addLog('WORKOUT_EDIT_SAVE', { monthId: currentMonthId, treinoId });
+            editMode = { active: false, treinoId: null };
+            updateEditControls();
+            setCurrentMonth(currentMonthId);
         }
 
         function toggleCheck(card) {
@@ -1121,29 +1415,102 @@
             // Lazy render
             const listContainer = document.getElementById(`list-${tabId}`);
             if (listContainer && listContainer.children.length === 0) {
-                renderList(tabId, workouts[tabId]);
+                renderList(tabId, monthlyPlans[currentMonthId][tabId]);
             }
         }
 
+        function renderAdminView() {
+            const monthsContainer = document.getElementById('admin-months');
+            const logsContainer = document.getElementById('admin-logs');
+            if (monthsContainer) {
+                const now = new Date();
+                const year = now.getFullYear();
+                let html = '';
+                for (let i = 3; i < 12; i++) {
+                    const id = formatMonthId(year, i);
+                    const blocked = isMonthBlocked(id);
+                    const hasPlan = !!monthlyPlans[id];
+                    const statusText = blocked ? 'Bloqueado' : 'Liberado';
+                    const statusColor = blocked ? 'text-rose-500 bg-rose-50 border-rose-100' : 'text-emerald-600 bg-emerald-50 border-emerald-100';
+                    html += `
+                        <div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-b-0">
+                            <div>
+                                <p class="text-sm font-semibold text-slate-700">${monthsPT[i]} ${year}</p>
+                                <p class="text-[11px] text-slate-400">${hasPlan ? 'Treino configurado' : 'Treino será gerado automaticamente'}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-1 rounded-full text-[10px] font-bold border ${statusColor}">${statusText}</span>
+                                <button onclick="toggleMonthAccess('${id}')" class="text-[11px] font-bold px-3 py-1 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50">Alternar</button>
+                            </div>
+                        </div>
+                    `;
+                }
+                monthsContainer.innerHTML = html;
+            }
+            if (logsContainer) {
+                const sorted = [...trainingLogs].sort((a, b) => b.timestamp - a.timestamp).slice(0, 30);
+                let html = '';
+                sorted.forEach(log => {
+                    const date = new Date(log.timestamp);
+                    const ts = date.toLocaleString('pt-BR');
+                    html += `
+                        <div class="border-b border-slate-100 pb-1 last:border-b-0">
+                            <p class="font-mono text-[11px] text-slate-500">${ts}</p>
+                            <p class="text-[11px]"><span class="font-bold">${log.type}</span> - ${JSON.stringify(log.details)}</p>
+                        </div>
+                    `;
+                });
+                if (!html) html = '<p class="text-[11px] text-slate-400">Nenhum log registrado ainda.</p>';
+                logsContainer.innerHTML = html;
+            }
+        }
+
+        function toggleMonthAccess(monthId) {
+            if (monthAccess[monthId]) {
+                delete monthAccess[monthId];
+            } else {
+                monthAccess[monthId] = true;
+            }
+            localStorage.setItem('gabrielle_month_access', JSON.stringify(monthAccess));
+            addLog('TOGGLE_MONTH_ACCESS', { monthId: monthId, allowed: !!monthAccess[monthId] });
+            renderMonthSelector();
+            renderAdminView();
+        }
+
         function switchView(viewName) {
-            // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            if (viewName === 'admin' && !isAdmin) {
+                const code = prompt('Digite o código de administrador:');
+                if (code !== 'ARGEUGAB2024') {
+                    alert('Acesso de administrador negado.');
+                    return;
+                }
+                isAdmin = true;
+                localStorage.setItem('gabrielle_is_admin', 'true');
+                addLog('ADMIN_LOGIN', {});
+            }
             document.getElementById(`view-${viewName}`).classList.remove('hidden');
-            
-            // Update Nav Icons
             const navWorkouts = document.getElementById('nav-workouts');
             const navStats = document.getElementById('nav-stats');
-            
-            if(viewName === 'workouts') {
-                navWorkouts.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
-                navStats.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
-            } else {
-                navStats.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
-                navWorkouts.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
-                renderCalendar();
-                renderChart();
+            const navAdmin = document.getElementById('nav-admin');
+            if (navWorkouts && navStats && navAdmin) {
+                if (viewName === 'workouts') {
+                    navWorkouts.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
+                    navStats.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                    navAdmin.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                } else if (viewName === 'stats') {
+                    navStats.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
+                    navWorkouts.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                    navAdmin.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                    renderCalendar();
+                    renderChart();
+                } else {
+                    navAdmin.className = 'flex flex-col items-center gap-1 text-rose-500 transition-colors';
+                    navWorkouts.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                    navStats.className = 'flex flex-col items-center gap-1 text-slate-400 transition-colors hover:text-rose-400';
+                    renderAdminView();
+                }
             }
-            
             window.scrollTo(0,0);
         }
 
@@ -1156,11 +1523,13 @@
             const entry = {
                 date: today,
                 workoutId: currentTab,
+                monthId: currentMonthId,
                 timestamp: Date.now()
             };
             
             userHistory.push(entry);
             localStorage.setItem('gabrielle_history', JSON.stringify(userHistory));
+            addLog('CHECK_IN', { date: today, workoutId: currentTab, monthId: currentMonthId });
             
             // Update UI Stats immediately
             updateStatsUI();
@@ -1179,12 +1548,14 @@
             const content = document.getElementById('modal-content');
             
             // Confetti
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#f43f5e', '#fb7185', '#fecdd3']
-            });
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#f43f5e', '#fb7185', '#fecdd3']
+                });
+            }
             
             // Modal Animation
             modal.classList.remove('hidden');
@@ -1209,7 +1580,7 @@
         // --- EXERCISE DETAILS MODAL LOGIC ---
 
         function openExerciseModal(treinoId, index) {
-            const exercise = workouts[treinoId][index];
+            const exercise = monthlyPlans[currentMonthId][treinoId][index];
             const d = exercise.details || {}; 
 
             const modal = document.getElementById('exercise-modal');
@@ -1425,8 +1796,54 @@
 
         let chartInstance = null;
 
+        const workoutsMarch = {
+            treino1: [
+                { name: 'Agachamento Livre', sets: '5', reps: '6–8', note: '' },
+                { name: 'Elevação Pélvica', sets: '4', reps: '10–12', note: '' },
+                { name: 'Supino Reto (Halteres)', sets: '3', reps: '10–12', note: '' },
+                { name: 'Desenvolvimento (Máquina)', sets: '3', reps: '10–12', note: '' },
+                { name: 'Cadeira Extensora Unilateral', sets: '5', reps: '15–20', note: '' },
+                { name: 'Tríceps Francês', sets: '3', reps: '12', note: '' },
+                { name: 'Abdominal Supra no Solo', sets: '3', reps: '15', note: '' }
+            ],
+            treino2: [
+                { name: 'Levantamento Terra Sumô', sets: '4', reps: '5–8', note: '' },
+                { name: 'Leg Press Horizontal', sets: '5', reps: '10–15', note: '' },
+                { name: 'Puxada Aberta Pronada', sets: '4', reps: '10–12', note: '' },
+                { name: 'Remada Baixa com Triângulo', sets: '5', reps: '10–12', note: '' },
+                { name: 'Cadeira Flexora', sets: '4', reps: '12–15', note: '' },
+                { name: 'Panturrilha no Leg Press', sets: '4', reps: '15–20', note: '' },
+                { name: 'Rosca Alternada com Halteres', sets: '3', reps: '12', note: '' }
+            ],
+            treino3: [
+                { name: 'Afundo com Halteres', sets: '5', reps: '10–12', note: '' },
+                { name: 'Stiff com Halteres', sets: '4', reps: '10–12', note: '' },
+                { name: 'Cadeira Adutora', sets: '4', reps: '15', note: '' },
+                { name: 'Elevação Lateral na Polia', sets: '3', reps: '12–15', note: '' },
+                { name: 'Pulldown Corda', sets: '4', reps: '12–15', note: '' },
+                { name: 'Tríceps Corda', sets: '3', reps: '12', note: '' }
+            ],
+            treino4: [
+                { name: 'Agachamento (Goblet Squat)', sets: '5', reps: '10–12', note: '' },
+                { name: 'Cadeira Abdutora', sets: '4', reps: '20', note: '' },
+                { name: 'Cadeira Extensora', sets: '3', reps: '15–20', note: '' },
+                { name: 'Mesa Flexora Unilateral', sets: '4', reps: '15–20', note: '' },
+                { name: 'Rosca Polia com Corda', sets: '3', reps: '12', note: '' },
+                { name: 'Prancha Ventral', sets: '3', reps: '45s', note: '' }
+            ]
+        };
+
+        function applyMarchFallbackPlan(targetMonthId) {
+            const cloned = deepClone(workoutsMarch);
+            monthlyPlans[targetMonthId] = cloned;
+            localStorage.setItem('gabrielle_monthly_plans', JSON.stringify(monthlyPlans));
+            addLog('MARCH_FALLBACK_USED', { monthId: targetMonthId });
+        }
+
         function renderChart() {
-            const ctx = document.getElementById('workoutChart').getContext('2d');
+            const canvas = document.getElementById('workoutChart');
+            if (!canvas || typeof Chart === 'undefined') return;
+            const ctx = canvas.getContext('2d');
             
             // Count frequency
             const counts = { 'A': 0, 'B': 0, 'C': 0, 'D': 0 };
@@ -1472,6 +1889,80 @@
                     }
                 }
             });
+        }
+
+        async function loadWorkoutsFromMarkdown(mes, targetMonthId) {
+            try {
+                const base = mes || '';
+                const lower = base.toLowerCase();
+                const variants = new Set([base, lower]);
+                if (lower === 'marco') { variants.add('março'); }
+                const candidates = [];
+                const idxMap = { 'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'março': 3, 'abril': 4, 'maio': 5, 'junho': 6, 'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12 };
+                variants.forEach(v => {
+                    const idx = idxMap[v];
+                    if (idx) candidates.push(`treino/${idx}. ${v}/treino.md`);
+                    candidates.push(`treino/${v}/treino.md`);
+                });
+                let text = null, usedPath = null, lastError = null;
+                for (const p of candidates) {
+                    try {
+                        const res = await fetch(encodeURI(p), { cache: 'no-cache' });
+                        if (res.ok) { text = await res.text(); usedPath = p; break; }
+                        lastError = `HTTP ${res.status}`;
+                    } catch (e) { lastError = String(e); }
+                }
+                const target = targetMonthId || currentMonthId;
+                if (!text) {
+                    if (lower === 'marco' || lower === 'março') {
+                        applyMarchFallbackPlan(target);
+                        return true;
+                    }
+                    throw new Error(`Falha ao ler MD: ${lastError || 'desconhecido'}`);
+                }
+                const parsed = parseMarkdownToWorkouts(text);
+                if (!parsed || !parsed.treino1 || !parsed.treino2 || !parsed.treino3 || !parsed.treino4) {
+                    throw new Error('Estrutura inválida após parse');
+                }
+                monthlyPlans[target] = parsed;
+                localStorage.setItem('gabrielle_monthly_plans', JSON.stringify(monthlyPlans));
+                addLog('MD_IMPORT_SUCCESS', { monthId: target, source: usedPath });
+                setCurrentMonth(target);
+                return true;
+            } catch (err) {
+                console.error(err);
+                addLog('MD_IMPORT_FAILED', { mes, error: String(err) });
+                return false;
+            }
+        }
+
+        function parseMarkdownToWorkouts(md) {
+            const lines = md.split(/\r?\n/);
+            const result = { treino1: [], treino2: [], treino3: [], treino4: [] };
+            let currentKey = null;
+            for (let raw of lines) {
+                const line = raw.trim();
+                if (!line) continue;
+                if (/^(?:#{1,6}\s*)?Treino\s+A$/i.test(line)) { currentKey = 'treino1'; continue; }
+                if (/^(?:#{1,6}\s*)?Treino\s+B$/i.test(line)) { currentKey = 'treino2'; continue; }
+                if (/^(?:#{1,6}\s*)?Treino\s+C$/i.test(line)) { currentKey = 'treino3'; continue; }
+                if (/^(?:#{1,6}\s*)?Treino\s+D$/i.test(line)) { currentKey = 'treino4'; continue; }
+                if (!currentKey) continue;
+                let m = line.match(/^\d+\.\s+(.*?)\s+—\s+Séries:\s*([0-9]+)\s+—\s+Repetições:\s*(.+)$/i);
+                if (!m) m = line.match(/^\d+\.\s+(.*?)\s+-\s+Séries:\s*([0-9]+)\s+-\s+Repetições:\s*(.+)$/i);
+                if (!m) continue;
+                const name = m[1].replace(/\*\*/g,'').trim();
+                const sets = String(m[2]).trim();
+                const reps = m[3].trim();
+                result[currentKey].push({ name, sets, reps, note: '' });
+            }
+            return result;
+        }
+        function monthIdToSlug(monthId) {
+            const parts = monthId.split('-');
+            const idx = parseInt(parts[1], 10) - 1;
+            const slugs = ['janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+            return slugs[idx] || 'janeiro';
         }
 
         function confirmReset() {
